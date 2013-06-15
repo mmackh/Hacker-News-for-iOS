@@ -33,6 +33,10 @@
 		223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191DB176C5EB40006084D /* MAMCollectionViewCell.m */; };
 		223191DE176C5ECF0006084D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223191DD176C5ECF0006084D /* MobileCoreServices.framework */; };
 		223191E0176C5ED40006084D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223191DF176C5ED40006084D /* SystemConfiguration.framework */; };
+		22319218176C6DE30006084D /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 22319217176C6DE30006084D /* RXMLElement.m */; };
+		2231921A176C6E9B0006084D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22319219176C6E9B0006084D /* libxml2.dylib */; };
+		2231921C176C6EBB0006084D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2231921B176C6EBB0006084D /* libz.dylib */; };
+		2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2282EF08176CC01700B61D65 /* MAMRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,12 @@
 		223191DB176C5EB40006084D /* MAMCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMCollectionViewCell.m; sourceTree = "<group>"; };
 		223191DD176C5ECF0006084D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		223191DF176C5ED40006084D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		22319216176C6DE30006084D /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
+		22319217176C6DE30006084D /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
+		22319219176C6E9B0006084D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		2231921B176C6EBB0006084D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		2282EF07176CC01700B61D65 /* MAMRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMRefreshControl.h; sourceTree = "<group>"; };
+		2282EF08176CC01700B61D65 /* MAMRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2231921C176C6EBB0006084D /* libz.dylib in Frameworks */,
+				2231921A176C6E9B0006084D /* libxml2.dylib in Frameworks */,
 				223191E0176C5ED40006084D /* SystemConfiguration.framework in Frameworks */,
 				223191DE176C5ECF0006084D /* MobileCoreServices.framework in Frameworks */,
 				223191B7176C527D0006084D /* QuartzCore.framework in Frameworks */,
@@ -119,6 +131,8 @@
 		2231918A176C3AEA0006084D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2231921B176C6EBB0006084D /* libz.dylib */,
+				22319219176C6E9B0006084D /* libxml2.dylib */,
 				223191DF176C5ED40006084D /* SystemConfiguration.framework */,
 				223191DD176C5ECF0006084D /* MobileCoreServices.framework */,
 				223191B6176C527D0006084D /* QuartzCore.framework */,
@@ -204,6 +218,7 @@
 		223191D7176C5E570006084D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				22319215176C6DE30006084D /* RaptureXML */,
 				223191BA176C5E4F0006084D /* AFNetworking */,
 			);
 			name = Dependencies;
@@ -225,8 +240,19 @@
 			children = (
 				223191DA176C5EB40006084D /* MAMCollectionViewCell.h */,
 				223191DB176C5EB40006084D /* MAMCollectionViewCell.m */,
+				2282EF07176CC01700B61D65 /* MAMRefreshControl.h */,
+				2282EF08176CC01700B61D65 /* MAMRefreshControl.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		22319215176C6DE30006084D /* RaptureXML */ = {
+			isa = PBXGroup;
+			children = (
+				22319216176C6DE30006084D /* RXMLElement.h */,
+				22319217176C6DE30006084D /* RXMLElement.m */,
+			);
+			path = RaptureXML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +337,8 @@
 				223191D5176C5E4F0006084D /* AFXMLRequestOperation.m in Sources */,
 				223191D6176C5E4F0006084D /* UIImageView+AFNetworking.m in Sources */,
 				223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */,
+				22319218176C6DE30006084D /* RXMLElement.m in Sources */,
+				2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,10 +423,14 @@
 		223191AC176C3AEA0006084D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacker News/Hacker News-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SDK_DIR)\"/usr/include/libxml2";
 				INFOPLIST_FILE = "Hacker News/Hacker News-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -406,10 +438,14 @@
 		223191AD176C3AEA0006084D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacker News/Hacker News-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SDK_DIR)\"/usr/include/libxml2";
 				INFOPLIST_FILE = "Hacker News/Hacker News-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -433,6 +469,7 @@
 				223191AD176C3AEA0006084D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

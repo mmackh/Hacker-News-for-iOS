@@ -1,5 +1,5 @@
 //
-//  MAMCollectionViewCell.h
+//  MAMRefreshControl.h
 //  Hacker News
 //
 //  Created by mmackh on 6/15/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MAMCollectionViewCell : UICollectionViewCell
-
-@property (weak, nonatomic) IBOutlet UILabel *title;
+@interface MAMRefreshControl : UIRefreshControl
 
 @end
