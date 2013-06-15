@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2231918C176C3AEA0006084D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2231918B176C3AEA0006084D /* UIKit.framework */; };
+		2231918E176C3AEA0006084D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2231918D176C3AEA0006084D /* Foundation.framework */; };
+		22319190176C3AEA0006084D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2231918F176C3AEA0006084D /* CoreGraphics.framework */; };
+		22319196176C3AEA0006084D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22319194176C3AEA0006084D /* InfoPlist.strings */; };
+		22319198176C3AEA0006084D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22319197176C3AEA0006084D /* main.m */; };
+		2231919C176C3AEA0006084D /* MAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2231919B176C3AEA0006084D /* MAMAppDelegate.m */; };
+		2231919E176C3AEA0006084D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2231919D176C3AEA0006084D /* Default.png */; };
+		223191A0176C3AEA0006084D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2231919F176C3AEA0006084D /* Default@2x.png */; };
+		223191A2176C3AEA0006084D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 223191A1176C3AEA0006084D /* Default-568h@2x.png */; };
+		223191A5176C3AEA0006084D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223191A3176C3AEA0006084D /* MainStoryboard.storyboard */; };
+		223191A8176C3AEA0006084D /* MAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191A7176C3AEA0006084D /* MAMViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		22319188176C3AEA0006084D /* Hacker News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hacker News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2231918B176C3AEA0006084D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2231918D176C3AEA0006084D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2231918F176C3AEA0006084D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		22319193176C3AEA0006084D /* Hacker News-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hacker News-Info.plist"; sourceTree = "<group>"; };
+		22319195176C3AEA0006084D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22319197176C3AEA0006084D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22319199176C3AEA0006084D /* Hacker News-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hacker News-Prefix.pch"; sourceTree = "<group>"; };
+		2231919A176C3AEA0006084D /* MAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAMAppDelegate.h; sourceTree = "<group>"; };
+		2231919B176C3AEA0006084D /* MAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAMAppDelegate.m; sourceTree = "<group>"; };
+		2231919D176C3AEA0006084D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2231919F176C3AEA0006084D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		223191A1176C3AEA0006084D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		223191A4176C3AEA0006084D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		223191A6176C3AEA0006084D /* MAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAMViewController.h; sourceTree = "<group>"; };
+		223191A7176C3AEA0006084D /* MAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAMViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22319185176C3AEA0006084D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2231918C176C3AEA0006084D /* UIKit.framework in Frameworks */,
+				2231918E176C3AEA0006084D /* Foundation.framework in Frameworks */,
+				22319190176C3AEA0006084D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2231917F176C3AE90006084D = {
+			isa = PBXGroup;
+			children = (
+				22319191176C3AEA0006084D /* Hacker News */,
+				2231918A176C3AEA0006084D /* Frameworks */,
+				22319189176C3AEA0006084D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22319189176C3AEA0006084D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22319188176C3AEA0006084D /* Hacker News.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2231918A176C3AEA0006084D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2231918B176C3AEA0006084D /* UIKit.framework */,
+				2231918D176C3AEA0006084D /* Foundation.framework */,
+				2231918F176C3AEA0006084D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22319191176C3AEA0006084D /* Hacker News */ = {
+			isa = PBXGroup;
+			children = (
+				2231919A176C3AEA0006084D /* MAMAppDelegate.h */,
+				2231919B176C3AEA0006084D /* MAMAppDelegate.m */,
+				223191A3176C3AEA0006084D /* MainStoryboard.storyboard */,
+				223191A6176C3AEA0006084D /* MAMViewController.h */,
+				223191A7176C3AEA0006084D /* MAMViewController.m */,
+				22319192176C3AEA0006084D /* Supporting Files */,
+			);
+			path = "Hacker News";
+			sourceTree = "<group>";
+		};
+		22319192176C3AEA0006084D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22319193176C3AEA0006084D /* Hacker News-Info.plist */,
+				22319194176C3AEA0006084D /* InfoPlist.strings */,
+				22319197176C3AEA0006084D /* main.m */,
+				22319199176C3AEA0006084D /* Hacker News-Prefix.pch */,
+				2231919D176C3AEA0006084D /* Default.png */,
+				2231919F176C3AEA0006084D /* Default@2x.png */,
+				223191A1176C3AEA0006084D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22319187176C3AEA0006084D /* Hacker News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 223191AB176C3AEA0006084D /* Build configuration list for PBXNativeTarget "Hacker News" */;
+			buildPhases = (
+				22319184176C3AEA0006084D /* Sources */,
+				22319185176C3AEA0006084D /* Frameworks */,
+				22319186176C3AEA0006084D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hacker News";
+			productName = "Hacker News";
+			productReference = 22319188176C3AEA0006084D /* Hacker News.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22319180176C3AE90006084D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MAM;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Maximilian Mackh";
+			};
+			buildConfigurationList = 22319183176C3AE90006084D /* Build configuration list for PBXProject "Hacker News" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2231917F176C3AE90006084D;
+			productRefGroup = 22319189176C3AEA0006084D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22319187176C3AEA0006084D /* Hacker News */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22319186176C3AEA0006084D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22319196176C3AEA0006084D /* InfoPlist.strings in Resources */,
+				2231919E176C3AEA0006084D /* Default.png in Resources */,
+				223191A0176C3AEA0006084D /* Default@2x.png in Resources */,
+				223191A2176C3AEA0006084D /* Default-568h@2x.png in Resources */,
+				223191A5176C3AEA0006084D /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22319184176C3AEA0006084D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22319198176C3AEA0006084D /* main.m in Sources */,
+				2231919C176C3AEA0006084D /* MAMAppDelegate.m in Sources */,
+				223191A8176C3AEA0006084D /* MAMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		22319194176C3AEA0006084D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22319195176C3AEA0006084D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		223191A3176C3AEA0006084D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				223191A4176C3AEA0006084D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		223191A9176C3AEA0006084D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		223191AA176C3AEA0006084D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		223191AC176C3AEA0006084D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hacker News/Hacker News-Prefix.pch";
+				INFOPLIST_FILE = "Hacker News/Hacker News-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		223191AD176C3AEA0006084D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hacker News/Hacker News-Prefix.pch";
+				INFOPLIST_FILE = "Hacker News/Hacker News-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22319183176C3AE90006084D /* Build configuration list for PBXProject "Hacker News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223191A9176C3AEA0006084D /* Debug */,
+				223191AA176C3AEA0006084D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		223191AB176C3AEA0006084D /* Build configuration list for PBXNativeTarget "Hacker News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223191AC176C3AEA0006084D /* Debug */,
+				223191AD176C3AEA0006084D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22319180176C3AE90006084D /* Project object */;
+}
