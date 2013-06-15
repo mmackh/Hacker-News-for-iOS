@@ -10,7 +10,7 @@
 
 // Dependancies
 #import "AFNetworking/AFNetworking.h"
-#import "RaptureXML/RXMLElement.h"
+#import "RXMLElement.h"
 
 @implementation MAMHNController
 
