@@ -11,8 +11,10 @@
 //Dependancies
 #import "MAMHNController.h"
 #import "MAMCollectionViewCell.h"
+#import "MAMReaderViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface MAMViewController () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface MAMViewController () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ReaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -93,11 +95,31 @@
      }];
 }
 
+- (void)readerExit
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+	[self.view.layer addAnimation:transition forKey:nil];
+	[self.navigationController popViewControllerAnimated:NO];
+}
+
 #pragma mark -
 #pragma mark CollectionView Layout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 10, 70) lineBreakMode:NSLineBreakByTruncatingTail].height);
+    return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height);
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toReader"])
+    {
+        MAMReaderViewController *readerVC = [segue destinationViewController];
+        [readerVC setDelegate:self];
+    }
+}
+
 @end

@@ -36,6 +36,10 @@
 		2231921A176C6E9B0006084D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22319219176C6E9B0006084D /* libxml2.dylib */; };
 		2231921C176C6EBB0006084D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2231921B176C6EBB0006084D /* libz.dylib */; };
 		223207AF176CC6540036EC23 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 223207AE176CC6540036EC23 /* RXMLElement.m */; };
+		2261F72A176CD8DD00CB2213 /* MAMSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F729176CD8DD00CB2213 /* MAMSegue.m */; };
+		2261F72D176CDCA700CB2213 /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2261F72C176CDCA700CB2213 /* shadow.png */; };
+		2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */; };
+		2261F732176CE2E300CB2213 /* view.html in Resources */ = {isa = PBXBuildFile; fileRef = 2261F731176CE2E300CB2213 /* view.html */; };
 		2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2282EF08176CC01700B61D65 /* MAMRefreshControl.m */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +92,12 @@
 		2231921B176C6EBB0006084D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		223207AD176CC6540036EC23 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RXMLElement.h; path = "Hacker News/RXMLElement.h"; sourceTree = SOURCE_ROOT; };
 		223207AE176CC6540036EC23 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RXMLElement.m; path = "Hacker News/RXMLElement.m"; sourceTree = SOURCE_ROOT; };
+		2261F728176CD8DD00CB2213 /* MAMSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMSegue.h; sourceTree = "<group>"; };
+		2261F729176CD8DD00CB2213 /* MAMSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMSegue.m; sourceTree = "<group>"; };
+		2261F72C176CDCA700CB2213 /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
+		2261F72E176CDF1500CB2213 /* MAMReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMReaderViewController.h; sourceTree = "<group>"; };
+		2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMReaderViewController.m; sourceTree = "<group>"; };
+		2261F731176CE2E300CB2213 /* view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = view.html; sourceTree = "<group>"; };
 		2282EF07176CC01700B61D65 /* MAMRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMRefreshControl.h; sourceTree = "<group>"; };
 		2282EF08176CC01700B61D65 /* MAMRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +183,8 @@
 				223191A3176C3AEA0006084D /* MainStoryboard.storyboard */,
 				223191A6176C3AEA0006084D /* MAMViewController.h */,
 				223191A7176C3AEA0006084D /* MAMViewController.m */,
+				2261F72E176CDF1500CB2213 /* MAMReaderViewController.h */,
+				2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */,
 				223191D9176C5E940006084D /* UI */,
 			);
 			name = Views;
@@ -231,6 +243,7 @@
 				22319194176C3AEA0006084D /* InfoPlist.strings */,
 				22319197176C3AEA0006084D /* main.m */,
 				22319199176C3AEA0006084D /* Hacker News-Prefix.pch */,
+				2261F731176CE2E300CB2213 /* view.html */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -242,6 +255,9 @@
 				223191DB176C5EB40006084D /* MAMCollectionViewCell.m */,
 				2282EF07176CC01700B61D65 /* MAMRefreshControl.h */,
 				2282EF08176CC01700B61D65 /* MAMRefreshControl.m */,
+				2261F728176CD8DD00CB2213 /* MAMSegue.h */,
+				2261F729176CD8DD00CB2213 /* MAMSegue.m */,
+				2261F72B176CDC9400CB2213 /* Interface */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -253,6 +269,14 @@
 				223207AE176CC6540036EC23 /* RXMLElement.m */,
 			);
 			path = RaptureXML;
+			sourceTree = "<group>";
+		};
+		2261F72B176CDC9400CB2213 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				2261F72C176CDCA700CB2213 /* shadow.png */,
+			);
+			name = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +336,8 @@
 				223191A0176C3AEA0006084D /* Default@2x.png in Resources */,
 				223191A2176C3AEA0006084D /* Default-568h@2x.png in Resources */,
 				223191A5176C3AEA0006084D /* MainStoryboard.storyboard in Resources */,
+				2261F72D176CDCA700CB2213 /* shadow.png in Resources */,
+				2261F732176CE2E300CB2213 /* view.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +365,8 @@
 				223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */,
 				2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */,
 				223207AF176CC6540036EC23 /* RXMLElement.m in Sources */,
+				2261F72A176CD8DD00CB2213 /* MAMSegue.m in Sources */,
+				2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

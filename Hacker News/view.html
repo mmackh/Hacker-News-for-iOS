@@ -1,0 +1,113 @@
+<html><head>
+                    <meta name = "viewport" content = "user-scalable=no, width=device-width">
+                    <style type="text/css">
+                    * {
+                    -webkit-text-size-adjust: none !Important;		
+                    white-space: normal !Important;
+                    }
+                    body {
+                    font-family: "Helvetica Neue", sans-serif  !Important;
+                    font-size: 16px !Important;
+        background-color:none;
+                    color: #454545;
+                    width:90% !Important;
+                    padding-top:15px !Important;
+                    padding-bottom:60px !Important;
+                    margin: 0 auto !Important;
+                    word-wrap: break-word !Important;
+                    line-height:170% !Important;
+                    overflow: hidden;
+                    }
+.story-Image.centeredImage {
+  width:100% !important;
+}
+textarea {
+display: none !important;
+}
+input {
+display: none !important;
+} 
+form {
+display: none !important;
+} 
+                   .title {
+                    font-weight:bold !Important;
+                    font-size: 1.4em !Important;
+                    line-height:1.1em !Important;
+                    }
+                    .title a {
+                    text-decoration: none !Important;
+                    color:#333 !Important;
+                    }
+                    table, tr, td {
+                    background-color: transparent !important;
+                    }
+                    h1,h2,h3 {
+                    font-size:1.0em !important;
+                    }
+                    .info {
+                    font-style: italic;
+                    font-size: 0.9em;
+                    color: #999;
+                    }
+                    .article a {
+                    text-decoration: none !Important;
+                    color: #333;
+                    border-bottom:1px dashed;
+                    }
+table {
+width: 100% !important;
+max-width 100% !important;
+}
+                    img {
+                    max-width: 95% !important;
+                    width: auto !important;
+                    height: auto !important;
+                    padding:4px !important;
+                    border:1px solid #CCC !important;
+                    margin: 0 auto !important;
+                    background-color: #FFF !important;
+                    display: block !important;
+                    }
+                    .article video,
+                    .article embed,
+                    .article object {
+                    display: none;
+                    }
+                    .article pre,
+                    .article code {
+                    white-space: pre-line;
+                    font-size: 0.9em;
+                    }
+                    .article .img-1,
+                    .article .wp-smiley,
+                    .article .feedflare img,
+		            .article img[src*='/smilies/'],
+		            .article img[src*='.feedburner.com/~ff/'],
+		            .article img[data-src*='/smilies/'],
+		            .article img[data-src*='.feedburner.com/~ff/'] {
+		            border: 0 !important;
+			        outline: 0 !important;
+			        margin: 0 !important;
+			        background-color: transparent !important;
+			        -webkit-border-radius: 0 !important;
+		        	-webkit-box-shadow: none !important;
+	                }
+		            .article img[src*='.feedburner.com/~r/'],
+		            .article img[data-src*='.feedburner.com/~r/'] {
+		            display: none;
+		            }
+                    .hr {
+		            border: none;
+		            border-bottom: 1px solid white;
+		            border-top: 1px solid #EEE;
+		            clear: both;
+		            height: 0;
+		            width: 100%;
+		            margin-top:5px;
+		            margin-bottom:3px;
+		            }
+                    </style>
+                    </head><body><div class="title"><a href="[session:art_url]">
+[session:art_title]</a></div><div class="info">Score on HN: [session:art_score] | [session:art_comments]</div><div class="hr"></div>
+<div class="article">[data:FeedData("rss/channel/item/description")]</div></body></html>

@@ -18,7 +18,7 @@
                                     <size key="itemSize" width="320" height="170"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="44" maxX="0.0" maxY="44"/>
+                                    <inset key="sectionInset" minX="0.0" minY="43" maxX="0.0" maxY="44"/>
                                 </collectionViewFlowLayout>
                                 <view key="backgroundView" contentMode="scaleToFill" id="uf6-Wa-RKR" customClass="MAMRefreshControl">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
@@ -30,7 +30,7 @@
                                 </view>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="Cell" id="NNs-1A-fku" customClass="MAMCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="170"/>
+                                        <rect key="frame" x="0.0" y="43" width="320" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
@@ -79,26 +79,28 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstItem="dKE-nz-AKI" firstAttribute="trailing" secondItem="y15-PC-NSt" secondAttribute="trailing" type="default" id="0gY-FZ-osU"/>
-                                            <constraint firstItem="61f-3A-gN3" firstAttribute="leading" secondItem="NNs-1A-fku" secondAttribute="leading" type="default" id="86X-LF-iXZ"/>
                                             <constraint firstAttribute="trailing" secondItem="y15-PC-NSt" secondAttribute="trailing" constant="10" type="user" id="IPe-Q2-6zC"/>
                                             <constraint firstItem="0UX-2Q-oM1" firstAttribute="leading" secondItem="NNs-1A-fku" secondAttribute="leading" constant="10" type="user" id="IzR-Qh-Hmj"/>
                                             <constraint firstAttribute="trailing" secondItem="nHe-Oi-ubV" secondAttribute="trailing" constant="10" type="user" id="Q9b-5G-5wm"/>
                                             <constraint firstItem="dKE-nz-AKI" firstAttribute="top" secondItem="y15-PC-NSt" secondAttribute="bottom" type="user" id="Tjp-dp-SFH"/>
+                                            <constraint firstItem="61f-3A-gN3" firstAttribute="top" secondItem="NNs-1A-fku" secondAttribute="top" type="default" id="Z5v-ye-InX"/>
+                                            <constraint firstItem="61f-3A-gN3" firstAttribute="trailing" secondItem="NNs-1A-fku" secondAttribute="trailing" type="default" id="Z77-gs-PF6"/>
                                             <constraint firstItem="y15-PC-NSt" firstAttribute="leading" secondItem="NNs-1A-fku" secondAttribute="leading" constant="10" type="user" id="cTc-S0-S6q"/>
                                             <constraint firstItem="0UX-2Q-oM1" firstAttribute="top" secondItem="nHe-Oi-ubV" secondAttribute="bottom" type="user" id="dDI-iY-TJn"/>
                                             <constraint firstAttribute="bottom" secondItem="dKE-nz-AKI" secondAttribute="bottom" constant="8" type="user" id="ewO-yN-Zi2"/>
                                             <constraint firstItem="nHe-Oi-ubV" firstAttribute="top" secondItem="NNs-1A-fku" secondAttribute="top" constant="8" type="user" id="ggK-mQ-OkZ"/>
                                             <constraint firstAttribute="trailing" secondItem="0UX-2Q-oM1" secondAttribute="trailing" constant="10" type="user" id="ib1-x4-H0M"/>
                                             <constraint firstItem="y15-PC-NSt" firstAttribute="top" secondItem="0UX-2Q-oM1" secondAttribute="bottom" type="user" id="jyF-FM-Ago"/>
+                                            <constraint firstItem="61f-3A-gN3" firstAttribute="leading" secondItem="NNs-1A-fku" secondAttribute="leading" type="default" id="rcC-xz-sYb"/>
                                             <constraint firstItem="nHe-Oi-ubV" firstAttribute="leading" secondItem="NNs-1A-fku" secondAttribute="leading" constant="10" type="user" id="sF6-6E-epb"/>
                                             <constraint firstItem="dKE-nz-AKI" firstAttribute="leading" secondItem="y15-PC-NSt" secondAttribute="leading" type="default" id="umL-jM-OlB"/>
-                                            <constraint firstItem="61f-3A-gN3" firstAttribute="bottom" secondItem="NNs-1A-fku" secondAttribute="bottom" type="user" id="wn6-Bb-eOG"/>
-                                            <constraint firstItem="61f-3A-gN3" firstAttribute="trailing" secondItem="NNs-1A-fku" secondAttribute="trailing" type="default" id="xJ3-i4-wgG"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="title" destination="nHe-Oi-ubV" id="6Rb-dB-jtK"/>
+                                            <segue destination="YHK-t0-v0s" kind="custom" identifier="toReader" customClass="MAMSegue" id="Ru8-5N-LcE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -140,7 +142,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="Qtd-me-Jwp" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="04g-kv-uBP"/>
                             <constraint firstItem="xFH-4m-N9A" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="4zf-Ut-Egr"/>
@@ -164,19 +166,62 @@
             </objects>
             <point key="canvasLocation" x="669" y="138"/>
         </scene>
-        <!--View Controller-->
+        <!--Reader View Controller-->
         <scene sceneID="1Sy-P0-c7x">
             <objects>
-                <viewController id="YHK-t0-v0s" sceneMemberID="viewController">
+                <viewController id="YHK-t0-v0s" customClass="MAMReaderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ErV-T4-bhN">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wef-Id-JyR">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="OzL-so-8VH" appends="YES" id="oHS-8b-8h8"/>
+                                </connections>
+                            </webView>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="149-N1-uY4">
+                                <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" type="user" id="rZt-ez-jcz"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="redraw" image="shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="XXc-uV-0RX">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="5BQ-Xe-Qnw"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wef-Id-JyR" firstAttribute="bottom" secondItem="ErV-T4-bhN" secondAttribute="bottom" type="default" id="9wD-jr-Zj5"/>
+                            <constraint firstItem="149-N1-uY4" firstAttribute="trailing" secondItem="ErV-T4-bhN" secondAttribute="trailing" type="default" id="Dtx-gB-o5H"/>
+                            <constraint firstItem="XXc-uV-0RX" firstAttribute="leading" secondItem="ErV-T4-bhN" secondAttribute="leading" type="default" id="JMn-Xe-HCj"/>
+                            <constraint firstItem="149-N1-uY4" firstAttribute="bottom" secondItem="ErV-T4-bhN" secondAttribute="bottom" type="user" id="NeV-Mx-DG1"/>
+                            <constraint firstItem="XXc-uV-0RX" firstAttribute="bottom" secondItem="ErV-T4-bhN" secondAttribute="bottom" type="default" id="WWb-UQ-Nkr"/>
+                            <constraint firstItem="Wef-Id-JyR" firstAttribute="trailing" secondItem="ErV-T4-bhN" secondAttribute="trailing" type="default" id="bhY-Wl-qpx"/>
+                            <constraint firstItem="XXc-uV-0RX" firstAttribute="trailing" secondItem="ErV-T4-bhN" secondAttribute="trailing" type="default" id="exE-5S-Eqo"/>
+                            <constraint firstItem="149-N1-uY4" firstAttribute="leading" secondItem="ErV-T4-bhN" secondAttribute="leading" type="default" id="gXI-bN-nHW"/>
+                            <constraint firstItem="Wef-Id-JyR" firstAttribute="leading" secondItem="ErV-T4-bhN" secondAttribute="leading" type="default" id="mOJ-kS-qeS"/>
+                            <constraint firstItem="Wef-Id-JyR" firstAttribute="top" secondItem="ErV-T4-bhN" secondAttribute="top" type="default" id="nUc-zF-qAy"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="orb-hs-s5J"/>
+                    <connections>
+                        <outlet property="webView" destination="Wef-Id-JyR" id="j1M-UV-mZL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTm-d0-yrK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="OzL-so-8VH">
+                    <connections>
+                        <action selector="back:" destination="YHK-t0-v0s" id="qfg-6A-x0d"/>
+                        <outlet property="delegate" destination="YHK-t0-v0s" id="yyq-Ye-X7J"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1024" y="138"/>
+            <point key="canvasLocation" x="1043" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wz1-J5-EaY">
@@ -197,11 +242,21 @@
             <point key="canvasLocation" x="297" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="shadow.png" width="553" height="64"/>
+    </resources>
     <classes>
         <class className="MAMCollectionViewCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMCollectionViewCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MAMReaderViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMReaderViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="MAMRefreshControl" superclassName="UIRefreshControl">
