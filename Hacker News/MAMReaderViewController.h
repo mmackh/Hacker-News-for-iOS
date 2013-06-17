@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAMHNController.h"
 
 @protocol ReaderViewDelegate <NSObject>
 
@@ -17,5 +18,8 @@
 @interface MAMReaderViewController : UIViewController
 
 @property (weak, nonatomic) id<ReaderViewDelegate> delegate;
+
+- (void)setStory:(MAMHNStory *)story;
+- (MAMHNStory *)story;
 
 @end

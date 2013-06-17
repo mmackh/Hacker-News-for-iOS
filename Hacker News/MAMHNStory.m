@@ -8,7 +8,32 @@
 
 #import "MAMHNStory.h"
 
+// Dependancies
+#import "AFNetworking/AFNetworking.h"
+#import "RXMLElement.h"
+
 @implementation MAMHNStory
+
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody))completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://api.thequeue.org/v1/clear?url=%@",self.link];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:15];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        RXMLElement *rootXML = [RXMLElement elementFromXMLString:responseString encoding:NSUTF8StringEncoding];
+        [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
+        {
+            completionBlock(e.text);
+        }];
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Failed to load %@",error);
+    }];
+    [operation start];
+};
 
 #pragma mark -
 #pragma mark NSCoding

@@ -24,7 +24,9 @@
 @implementation MAMViewController
 {
     MAMHNController *_hnController;
+    MAMReaderViewController *_readerView;
     NSArray *_items;
+    int _selectedRow;
 }
 
 - (void)viewDidLoad
@@ -69,12 +71,35 @@
     MAMCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     MAMHNStory *story = _items[indexPath.row];
     [cell.title setText:story.title];
+    [cell.subtitle setText:[NSString stringWithFormat:@"Submitted %@ by %@",story.pubDate,story.user]];
+    [cell.description setText:story.description];
+    [cell.footer setText:[NSString stringWithFormat:@"%@ | %@",story.score,story.commentsValue]];
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    _selectedRow = indexPath.row;
+    if(_readerView == nil)
+    {
+        _readerView = [self.storyboard instantiateViewControllerWithIdentifier:@"readerView"];
+        [_readerView setDelegate:self];
+        [_readerView view];
+    }
+    if (![[_items[_selectedRow] title] isEqualToString:_readerView.story.title])
+    {
+        [_readerView setStory:_items[_selectedRow]];
+    }
+    
+    __weak UINavigationController *weakNavController = self.navigationController;
+    double delayInSeconds = 0.3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+    {
+        [weakNavController pushViewController:_readerView animated:YES];
+    });
 }
 
 - (IBAction)refresh:(id)sender
@@ -83,26 +108,19 @@
     [_hnController loadStoriesOfType:HNControllerStoryTypeTrending result:^(NSArray *results)
     {
         _items = results;
-        dispatch_async(dispatch_get_main_queue(),
-        ^{
-            [weakSelf.collectionView reloadData];
-            if (sender)
-            {
-                UIRefreshControl *refreshControl = sender;
-                [refreshControl endRefreshing];
-            }
-        });
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView setContentOffset:CGPointZero animated:YES];
+        if (sender)
+        {
+            UIRefreshControl *refreshControl = sender;
+            [refreshControl endRefreshing];
+        }
      }];
 }
 
 - (void)readerExit
 {
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-	[self.view.layer addAnimation:transition forKey:nil];
-	[self.navigationController popViewControllerAnimated:NO];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
@@ -111,15 +129,6 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height);
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"toReader"])
-    {
-        MAMReaderViewController *readerVC = [segue destinationViewController];
-        [readerVC setDelegate:self];
-    }
 }
 
 @end

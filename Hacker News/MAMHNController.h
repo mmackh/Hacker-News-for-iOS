@@ -10,6 +10,7 @@
 
 //External Dependancies
 #import "MAMHNStory.h"
+#import "MAMHNComment.h"
 
 typedef NS_ENUM(NSInteger, HNControllerStoryType)
 {
@@ -26,6 +27,8 @@ typedef NS_ENUM(NSInteger, HNControllerStoryType)
 // Methods
 - (NSArray *)loadStoriesFromCacheOfType:(HNControllerStoryType)storyType;
 - (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results))completionBlock;
+
+- (void)loadCommentsOnStoryWithID:(NSString *)storyID result:(void(^)(NSArray *results))completionBlock;
 
 // Helpers
 + (BOOL)isPad;

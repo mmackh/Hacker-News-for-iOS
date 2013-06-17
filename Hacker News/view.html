@@ -1,5 +1,6 @@
 <html><head>
                     <meta name = "viewport" content = "user-scalable=no, width=device-width">
+                    <meta charset='utf-8'> 
                     <style type="text/css">
                     * {
                     -webkit-text-size-adjust: none !Important;		
@@ -18,18 +19,18 @@
                     line-height:170% !Important;
                     overflow: hidden;
                     }
-.story-Image.centeredImage {
-  width:100% !important;
-}
-textarea {
-display: none !important;
-}
-input {
-display: none !important;
-} 
-form {
-display: none !important;
-} 
+                    .story-Image.centeredImage {
+                      width:100% !important;
+                    }
+                    textarea {
+                    display: none !important;
+                    }
+                    input {
+                    display: none !important;
+                    } 
+                    form {
+                    display: none !important;
+                    } 
                    .title {
                     font-weight:bold !Important;
                     font-size: 1.4em !Important;
@@ -39,6 +40,12 @@ display: none !important;
                     text-decoration: none !Important;
                     color:#333 !Important;
                     }
+                        table,thead,tbody
+                        {
+                            table-layout: fixed;
+                            max-width:100% !important;
+                            
+                        }
                     table, tr, td {
                     background-color: transparent !important;
                     }
@@ -100,7 +107,7 @@ max-width 100% !important;
                     .hr {
 		            border: none;
 		            border-bottom: 1px solid white;
-		            border-top: 1px solid #EEE;
+		            border-top: 1px solid #CCC;
 		            clear: both;
 		            height: 0;
 		            width: 100%;
@@ -108,6 +115,6 @@ max-width 100% !important;
 		            margin-bottom:3px;
 		            }
                     </style>
-                    </head><body><div class="title"><a href="[session:art_url]">
-[session:art_title]</a></div><div class="info">Score on HN: [session:art_score] | [session:art_comments]</div><div class="hr"></div>
-<div class="article">[data:FeedData("rss/channel/item/description")]</div></body></html>
+                    </head><body><div class="title"><a href="**[link]**">
+**[title]**</a></div><div class="info">Score on HN: **[points]** | **[comments]**</div><div class="hr"></div>
+<div class="article">Loading...  </div></body></html>

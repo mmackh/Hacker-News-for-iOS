@@ -21,4 +21,6 @@
 @property (nonatomic,copy) NSString *hostValue;
 @property (nonatomic,copy) NSString *hnID;
 
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody))completionBlock;
+
 @end
