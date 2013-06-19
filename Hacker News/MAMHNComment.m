@@ -13,6 +13,8 @@
 {
     NSString *_commentStorage;
     UIColor *_commentColor;
+    
+    int _indentationLevel;
 }
 
 - (void)setComment:(NSString *)comment
@@ -59,6 +61,16 @@ NSRange rg(NSString *str)
 - (UIColor *)color
 {
     return _commentColor;
+}
+
+- (void)setIndentationLevel:(int)level
+{
+    _indentationLevel = level;
+}
+
+- (int)indentationLevel
+{
+    return _indentationLevel;
 }
 
 - (UIColor *)colorFromHexString:(NSString *)hexString

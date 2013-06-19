@@ -23,7 +23,8 @@
     return self;
 }
 
--(void)awakeFromNib{
+-(void)awakeFromNib
+{
     [super awakeFromNib];
     for(NSLayoutConstraint *cellConstraint in self.constraints){
         [self removeConstraint:cellConstraint];
@@ -39,10 +40,7 @@
                                       constant:cellConstraint.constant];
         [self.contentView addConstraint:contentViewConstraint];
     }
-    [self.comment setFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
     [self.comment setDataDetectorTypes:NSTextCheckingTypeLink];
-    [self.comment setLineHeightMultiple:1.07];
-    [self.comment setVerticalAlignment:TTTAttributedLabelVerticalAlignmentTop];
 }
 
 - (void)layoutSubviews
@@ -56,6 +54,12 @@
     self.contentView.frame.size.width - indentPoints,
     self.contentView.frame.size.height
     );
+}
+
++ (CGFloat)heightForCellWithText:(NSString *)text constrainedToWidth:(float)width
+{
+    CGFloat height = 40;
+    return [text sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineBreakMode:NSLineBreakByTruncatingTail].height + height;
 }
 
 @end

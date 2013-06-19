@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *comment;
 
++ (CGFloat)heightForCellWithText:(NSString *)text constrainedToWidth:(float)width;
+
 @end

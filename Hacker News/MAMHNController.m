@@ -46,7 +46,7 @@
     return self;
 }
 
-- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results))completionBlock
+- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type))completionBlock
 {
     static const NSString *host = @"http://api.thequeue.org/hn/";
     NSString *targetURLString;
@@ -89,7 +89,7 @@
             [story setLink:[e child:@"link"].text];
             [results addObject:story];
         }];
-        completionBlock(results);
+        completionBlock(results,storyType);
         [NSKeyedArchiver archiveRootObject:results toFile:[weakSelf pathForPersistedStoriesOfType:storyType]];
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -134,10 +134,13 @@
             if (!replyIDQuery.count)continue;
             NSString *replyID = [[replyIDQuery objectAtIndex:0] objectForKey:@"href"];
             
+            
+            static const NSString *enter = @"↳ ";
+            
             MAMHNComment *newComment = [MAMHNComment new];
             [newComment setComment:commentHTML];
             [newComment setTime:time];
-            [newComment setUsername:username];
+            [newComment setUsername:(indentationLevel > 0 && username.length) ? [enter stringByAppendingString:username] : username];
             [newComment setReplyID:replyID];
             [newComment setIndentationLevel:indentationLevel];
             [comments addObject:newComment];

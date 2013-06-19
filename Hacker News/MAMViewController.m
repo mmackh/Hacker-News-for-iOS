@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+- (IBAction)changeSection:(id)sender;
 
 @end
 
@@ -27,16 +28,21 @@
     MAMReaderViewController *_readerView;
     NSArray *_items;
     int _selectedRow;
+    int _currentSection;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self.collectionView setScrollIndicatorInsets:UIEdgeInsetsMake(44, 0, 44, 0)];
     
     _hnController = [MAMHNController sharedController];
     _items = [_hnController loadStoriesFromCacheOfType:HNControllerStoryTypeTrending];
+    _currentSection = 0;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
     [self refresh:nil];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -80,7 +86,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     _selectedRow = indexPath.row;
     if(_readerView == nil)
     {
@@ -92,23 +98,33 @@
     {
         [_readerView setStory:_items[_selectedRow]];
     }
+
+    [self.navigationController pushViewController:_readerView animated:YES];
+}
+
+- (void)reloadCollectionView
+{
+    if (!_items.count) return;
     
-    __weak UINavigationController *weakNavController = self.navigationController;
-    double delayInSeconds = 0.3;
+    [self.collectionView setUserInteractionEnabled:NO];
+    
+    double delayInSeconds = .2;
+    __weak MAMViewController *weakSelf = self;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
-    {
-        [weakNavController pushViewController:_readerView animated:YES];
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView setUserInteractionEnabled:YES];
     });
 }
 
 - (IBAction)refresh:(id)sender
 {
     __weak MAMViewController *weakSelf = self;
-    [_hnController loadStoriesOfType:HNControllerStoryTypeTrending result:^(NSArray *results)
+    [_hnController loadStoriesOfType:_currentSection result:^(NSArray *results, HNControllerStoryType type)
     {
         _items = results;
-        [weakSelf.collectionView reloadData];
+        [weakSelf reloadCollectionView];
         [weakSelf.collectionView setContentOffset:CGPointZero animated:YES];
         if (sender)
         {
@@ -131,4 +147,47 @@
     return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height);
 }
 
+#pragma mark -
+#pragma mark Change Sections
+
+- (IBAction)changeSection:(id)sender
+{
+    
+    if (_currentSection != [sender tag])
+    {
+        CATransition *animation = [CATransition animation];
+        [animation setType:kCATransitionPush];
+        [animation setSubtype:(_currentSection > [sender tag] ? kCATransitionFromLeft : kCATransitionFromRight)];
+        [animation setDuration:0.3f];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        [[self.collectionView layer] addAnimation:animation forKey:@"swap"];
+    }
+    
+    _currentSection = [sender tag];
+    NSString *title;
+    switch (_currentSection)
+    {
+        case 0:
+            title = @"Currently Trending";
+            break;
+        case 1:
+            title = @"Latest Submissions";
+            break;
+        case 2:
+            title = @"Cream of the Crop";
+            break;
+    }
+    [self.titleLabel setText:title];
+    
+    __weak MAMViewController *weakSelf = self;
+    _items = [_hnController loadStoriesFromCacheOfType:_currentSection];
+    [self.collectionView reloadData];
+    [_hnController loadStoriesOfType:_currentSection result:^(NSArray *results, HNControllerStoryType type)
+     {
+         if (type != _currentSection) return;
+         _items = results;
+         [weakSelf reloadCollectionView];
+         [weakSelf.collectionView setContentOffset:CGPointZero animated:NO];
+     }];
+}
 @end

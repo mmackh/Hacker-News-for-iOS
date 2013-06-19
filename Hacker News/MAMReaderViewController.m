@@ -86,7 +86,7 @@
     [string replaceOccurrencesOfString:@"**[comments]**" withString:_story.commentsValue options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[link]**" withString:_story.link options:0 range:NSMakeRange(0, string.length)];
     _string = string;
-    [self.webView loadData:[string dataUsingEncoding:NSUTF8StringEncoding] MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:[[NSBundle mainBundle] bundleURL]];
+    [self.webView loadHTMLString:string baseURL:nil];
     __weak MAMReaderViewController *weakSelf = self;
     [_story loadClearReadLoadBody:^(NSString *resultBody)
      {

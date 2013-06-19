@@ -16,7 +16,8 @@
 @property (copy,nonatomic) NSString *username;
 @property (copy,nonatomic) NSString *replyID;
 
-@property (readwrite) int indentationLevel;
+- (void)setIndentationLevel:(int)level;
+- (int)indentationLevel;
 
 - (UIColor *)color;
 

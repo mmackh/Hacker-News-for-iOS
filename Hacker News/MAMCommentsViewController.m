@@ -40,7 +40,7 @@
     
     __weak MAMCommentsViewController *weakSelf = self;
     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 43, 0)];
-    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(40, 0, 44, 0)];
+    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(40, 0, 0, 0)];
     [[MAMHNController sharedController] loadCommentsOnStoryWithID:_story.hnID result:^(NSArray *results)
     {
         _comments = results;
@@ -73,7 +73,7 @@
 #pragma mark TableView
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+{    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 40)];
     [headerView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
     
@@ -87,8 +87,26 @@
     [headerLabel setAdjustsLetterSpacingToFitWidth:YES];
     [headerLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [headerView addSubview:headerLabel];
+    
+    UITapGestureRecognizer *headerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerTapped:)];
+    [headerTap setNumberOfTapsRequired:1];
+    [headerTap setNumberOfTouchesRequired:1];
+    [headerView addGestureRecognizer:headerTap];
 
     return headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"toWeb" sender:[NSURL URLWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/%@",[_comments[indexPath.row]replyID]]]];
+}
+
+- (void)headerTapped:(UITapGestureRecognizer *)tap
+{
+    if (tap.state == UIGestureRecognizerStateRecognized)
+    {
+        [self performSegueWithIdentifier:@"toWeb" sender:[NSURL URLWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/item?id=%@",_story.hnID]]];
+    }
 }
 
 - (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -103,7 +121,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MAMCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MAMCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     MAMHNComment *comment = _comments[indexPath.row];
     [cell.comment setTextColor:comment.color];
@@ -111,15 +129,17 @@
     [cell.comment setText:comment.comment];
     
     
-    [cell.user setText:((comment.indentationLevel > 0) ? [@"↳ " stringByAppendingString:comment.username] : comment.username)];
+    [cell.user setText:comment.username];
     [cell.time setText:comment.time];
+    
     return cell;
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MAMHNComment *hnComment = _comments[indexPath.row];
-    return 37 + [[hnComment comment] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:16] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width - 10 - ([hnComment indentationLevel] * 10), 10000) lineBreakMode:NSLineBreakByTruncatingTail].height;
+    float width = (self.tableView.bounds.size.width - ([hnComment indentationLevel] * 10)  - 20);
+    return [MAMCommentTableViewCell heightForCellWithText:hnComment.comment constrainedToWidth:width];
 }
 
 - (int)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath

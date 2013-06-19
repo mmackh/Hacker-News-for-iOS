@@ -53,7 +53,6 @@
 		22382339176D189D008E9CED /* stats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2238232B176D189D008E9CED /* stats@2x.png */; };
 		2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */; };
 		2261F732176CE2E300CB2213 /* view.html in Resources */ = {isa = PBXBuildFile; fileRef = 2261F731176CE2E300CB2213 /* view.html */; };
-		2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2282EF08176CC01700B61D65 /* MAMRefreshControl.m */; };
 		22B2650A176DA934001D6656 /* MAMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B26509176DA934001D6656 /* MAMWebViewController.m */; };
 		22B26510176DE7AC001D6656 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B2650F176DE7AC001D6656 /* NSString+Additions.m */; };
 		22B26513176DF4FC001D6656 /* MAMCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B26512176DF4FC001D6656 /* MAMCommentsViewController.m */; };
@@ -133,8 +132,6 @@
 		2261F72E176CDF1500CB2213 /* MAMReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMReaderViewController.h; sourceTree = "<group>"; };
 		2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMReaderViewController.m; sourceTree = "<group>"; };
 		2261F731176CE2E300CB2213 /* view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = view.html; sourceTree = "<group>"; };
-		2282EF07176CC01700B61D65 /* MAMRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMRefreshControl.h; sourceTree = "<group>"; };
-		2282EF08176CC01700B61D65 /* MAMRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMRefreshControl.m; sourceTree = "<group>"; };
 		22B26508176DA934001D6656 /* MAMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMWebViewController.h; sourceTree = "<group>"; };
 		22B26509176DA934001D6656 /* MAMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMWebViewController.m; sourceTree = "<group>"; };
 		22B2650E176DE7AC001D6656 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -378,8 +375,6 @@
 				223191A7176C3AEA0006084D /* MAMViewController.m */,
 				223191DA176C5EB40006084D /* MAMCollectionViewCell.h */,
 				223191DB176C5EB40006084D /* MAMCollectionViewCell.m */,
-				2282EF07176CC01700B61D65 /* MAMRefreshControl.h */,
-				2282EF08176CC01700B61D65 /* MAMRefreshControl.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -499,7 +494,6 @@
 				223191D5176C5E4F0006084D /* AFXMLRequestOperation.m in Sources */,
 				223191D6176C5E4F0006084D /* UIImageView+AFNetworking.m in Sources */,
 				223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */,
-				2282EF09176CC01700B61D65 /* MAMRefreshControl.m in Sources */,
 				223207AF176CC6540036EC23 /* RXMLElement.m in Sources */,
 				2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */,
 				22B2650A176DA934001D6656 /* MAMWebViewController.m in Sources */,
