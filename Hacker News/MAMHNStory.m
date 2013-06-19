@@ -14,6 +14,11 @@
 
 @implementation MAMHNStory
 
+- (NSString *)domain
+{
+    return [[NSURL URLWithString:self.link] host];
+}
+
 - (void)loadClearReadLoadBody:(void(^)(NSString *resultBody))completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api.thequeue.org/v1/clear?url=%@",self.link];

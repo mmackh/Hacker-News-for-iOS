@@ -104,10 +104,10 @@
                                     <outlet property="delegate" destination="2" id="LHM-Dg-0Sz"/>
                                 </connections>
                             </collectionView>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtd-me-Jwp" userLabel="View - Topbar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtd-me-Jwp" userLabel="View - Topbar">
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Currently Trending" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVp-2u-BAj">
-                                        <color key="backgroundColor" red="0.93333339691162109" green="0.93333339691162109" blue="0.93333339691162109" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" red="0.60392159223556519" green="0.60392159223556519" blue="0.60392159223556519" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93609851598739624" green="0.92052956505422245" blue="0.90564287602572879" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="aVp-2u-BAj" secondAttribute="trailing" constant="10" type="user" id="3e6-9e-gX4"/>
                                     <constraint firstItem="uec-kv-3Sl" firstAttribute="bottom" secondItem="Qtd-me-Jwp" secondAttribute="bottom" type="user" id="CWv-Ai-fRT"/>
@@ -133,9 +133,9 @@
                             </view>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kF2-P0-ilk">
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-yA-wI9">
+                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-yA-wI9" customClass="MAMButton">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="73" id="xPY-Yv-hAI"/>
+                                            <constraint firstAttribute="width" constant="72" type="user" id="hZ7-4H-xoD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="best.png">
@@ -149,7 +149,10 @@
                                             <action selector="changeSection:" destination="2" eventType="touchUpInside" id="sDp-mx-Hu8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="140-0M-cZQ">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="140-0M-cZQ" customClass="MAMButton">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" type="user" id="aOy-bi-24o"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="clock.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -162,9 +165,9 @@
                                             <action selector="changeSection:" destination="2" eventType="touchUpInside" id="XH2-p4-07A"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-qc-Irk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-qc-Irk" customClass="MAMButton">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="73" id="fOc-qm-CLC"/>
+                                            <constraint firstAttribute="width" constant="72" type="user" id="9PR-6T-MOw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="stats.png">
@@ -187,18 +190,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="140-0M-cZQ" firstAttribute="leading" secondItem="ntg-qc-Irk" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1ds-cA-nmG"/>
                                     <constraint firstItem="CJ0-nd-JVc" firstAttribute="leading" secondItem="kF2-P0-ilk" secondAttribute="leading" type="default" id="51X-fL-Gyc"/>
                                     <constraint firstItem="ntg-qc-Irk" firstAttribute="top" secondItem="kF2-P0-ilk" secondAttribute="top" type="default" id="C78-aL-ZEW"/>
+                                    <constraint firstItem="140-0M-cZQ" firstAttribute="centerX" secondItem="kF2-P0-ilk" secondAttribute="centerX" type="default" id="HJm-DF-fkI"/>
                                     <constraint firstItem="140-0M-cZQ" firstAttribute="bottom" secondItem="kF2-P0-ilk" secondAttribute="bottom" type="default" id="HoH-U8-Vo6"/>
                                     <constraint firstAttribute="height" constant="44" type="user" id="I1e-Xl-fVB"/>
-                                    <constraint firstItem="ntg-qc-Irk" firstAttribute="leading" secondItem="kF2-P0-ilk" secondAttribute="leading" constant="43" id="IeH-1b-hhO"/>
                                     <constraint firstItem="ntg-qc-Irk" firstAttribute="bottom" secondItem="kF2-P0-ilk" secondAttribute="bottom" type="default" id="JDt-dj-nif"/>
+                                    <constraint firstAttribute="trailing" secondItem="pbX-yA-wI9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JEO-9W-8qb"/>
                                     <constraint firstItem="ntg-qc-Irk" firstAttribute="baseline" secondItem="140-0M-cZQ" secondAttribute="baseline" type="default" id="QO4-sp-ygO"/>
-                                    <constraint firstItem="pbX-yA-wI9" firstAttribute="leading" secondItem="140-0M-cZQ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="UYs-zc-tLK"/>
-                                    <constraint firstItem="140-0M-cZQ" firstAttribute="centerX" secondItem="kF2-P0-ilk" secondAttribute="centerX" type="default" id="auf-t6-YLY"/>
+                                    <constraint firstItem="140-0M-cZQ" firstAttribute="centerX" secondItem="CJ0-nd-JVc" secondAttribute="centerX" type="default" id="TTo-H8-KJ6"/>
+                                    <constraint firstItem="ntg-qc-Irk" firstAttribute="leading" secondItem="kF2-P0-ilk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UWN-8P-k3x"/>
                                     <constraint firstItem="CJ0-nd-JVc" firstAttribute="top" secondItem="kF2-P0-ilk" secondAttribute="top" type="default" id="hTd-oP-hEa"/>
-                                    <constraint firstItem="CJ0-nd-JVc" firstAttribute="trailing" secondItem="kF2-P0-ilk" secondAttribute="trailing" type="default" id="imT-xY-hfe"/>
                                     <constraint firstItem="140-0M-cZQ" firstAttribute="top" secondItem="kF2-P0-ilk" secondAttribute="top" type="default" id="laF-sv-d05"/>
                                     <constraint firstItem="pbX-yA-wI9" firstAttribute="top" secondItem="kF2-P0-ilk" secondAttribute="top" type="default" id="p58-Mb-eYS"/>
                                     <constraint firstItem="pbX-yA-wI9" firstAttribute="bottom" secondItem="kF2-P0-ilk" secondAttribute="bottom" type="default" id="vSk-ct-HuI"/>
@@ -206,13 +208,14 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Qtd-me-Jwp" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="04g-kv-uBP"/>
                             <constraint firstItem="xFH-4m-N9A" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="4zf-Ut-Egr"/>
                             <constraint firstItem="xFH-4m-N9A" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CGS-rb-X85"/>
-                            <constraint firstItem="kF2-P0-ilk" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="LQS-Ml-GfW"/>
+                            <constraint firstItem="kF2-P0-ilk" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="LQS-Ml-GfW"/>
                             <constraint firstAttribute="bottom" secondItem="kF2-P0-ilk" secondAttribute="bottom" type="user" id="hce-Ky-vXP"/>
-                            <constraint firstItem="kF2-P0-ilk" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="hct-Ag-PJs"/>
+                            <constraint firstItem="kF2-P0-ilk" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="hct-Ag-PJs"/>
                             <constraint firstItem="Qtd-me-Jwp" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="i9G-wu-f2A"/>
                             <constraint firstItem="xFH-4m-N9A" firstAttribute="top" secondItem="3" secondAttribute="top" constant="43" type="user" id="iIf-FZ-G8L"/>
                             <constraint firstItem="xFH-4m-N9A" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="ovU-aS-rjm"/>
@@ -221,8 +224,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="VS7-gB-ovv"/>
                     <connections>
+                        <outlet property="bestButton" destination="pbX-yA-wI9" id="xAS-o2-lyN"/>
                         <outlet property="collectionView" destination="xFH-4m-N9A" id="c0E-oX-xBW"/>
+                        <outlet property="latestButton" destination="140-0M-cZQ" id="vSu-vi-gT5"/>
                         <outlet property="titleLabel" destination="aVp-2u-BAj" id="45e-JR-MVw"/>
+                        <outlet property="trendingButton" destination="ntg-qc-Irk" id="IvV-jx-Ltb"/>
                         <segue destination="YHK-t0-v0s" kind="push" identifier="toReader" customClass="MAMSegue" id="kHf-mx-tGd"/>
                     </connections>
                 </viewController>
@@ -238,10 +244,10 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView opaque="NO" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wef-Id-JyR">
+                            <webView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wef-Id-JyR">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
                                 <connections>
                                     <outlet property="delegate" destination="YHK-t0-v0s" id="o8T-ro-cxx"/>
                                     <outletCollection property="gestureRecognizers" destination="OzL-so-8VH" appends="YES" id="oHS-8b-8h8"/>
@@ -543,6 +549,9 @@
         <image name="stats.png" width="27" height="19"/>
     </resources>
     <classes>
+        <class className="MAMButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMButton.h"/>
+        </class>
         <class className="MAMCollectionViewCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMCollectionViewCell.h"/>
             <relationships>
@@ -578,9 +587,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changeSection:"/>
-                <relationship kind="action" name="refresh:"/>
+                <relationship kind="outlet" name="bestButton" candidateClass="MAMButton"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="latestButton" candidateClass="MAMButton"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="trendingButton" candidateClass="MAMButton"/>
             </relationships>
         </class>
         <class className="MAMWebViewController" superclassName="UIViewController">
@@ -610,9 +621,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

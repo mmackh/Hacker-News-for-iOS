@@ -13,11 +13,17 @@
 #import "MAMCollectionViewCell.h"
 #import "MAMReaderViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MAMButton.h"
 
-@interface MAMViewController () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ReaderViewDelegate>
+@interface MAMViewController () <UIGestureRecognizerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ReaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (weak, nonatomic) IBOutlet MAMButton *trendingButton;
+@property (weak, nonatomic) IBOutlet MAMButton *latestButton;
+@property (weak, nonatomic) IBOutlet MAMButton *bestButton;
+
 - (IBAction)changeSection:(id)sender;
 
 @end
@@ -38,6 +44,7 @@
     _hnController = [MAMHNController sharedController];
     _items = [_hnController loadStoriesFromCacheOfType:HNControllerStoryTypeTrending];
     _currentSection = 0;
+    [_trendingButton setSelected:YES];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -80,13 +87,12 @@
     [cell.subtitle setText:[NSString stringWithFormat:@"Submitted %@ by %@",story.pubDate,story.user]];
     [cell.description setText:story.description];
     [cell.footer setText:[NSString stringWithFormat:@"%@ | %@",story.score,story.commentsValue]];
-    
     return cell;
 }
 
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     _selectedRow = indexPath.row;
     if(_readerView == nil)
     {
@@ -98,7 +104,8 @@
     {
         [_readerView setStory:_items[_selectedRow]];
     }
-
+    
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     [self.navigationController pushViewController:_readerView animated:YES];
 }
 
@@ -108,7 +115,7 @@
     
     [self.collectionView setUserInteractionEnabled:NO];
     
-    double delayInSeconds = .2;
+    double delayInSeconds = .3;
     __weak MAMViewController *weakSelf = self;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -152,7 +159,6 @@
 
 - (IBAction)changeSection:(id)sender
 {
-    
     if (_currentSection != [sender tag])
     {
         CATransition *animation = [CATransition animation];
@@ -169,25 +175,71 @@
     {
         case 0:
             title = @"Currently Trending";
+            [_trendingButton setSelected:YES];
+            [_latestButton setSelected:NO];
+            [_bestButton setSelected:NO];
             break;
         case 1:
             title = @"Latest Submissions";
+            [_trendingButton setSelected:NO];
+            [_latestButton setSelected:YES];
+            [_bestButton setSelected:NO];
             break;
         case 2:
             title = @"Cream of the Crop";
+            [_trendingButton setSelected:NO];
+            [_latestButton setSelected:NO];
+            [_bestButton setSelected:YES];
             break;
     }
     [self.titleLabel setText:title];
     
-    __weak MAMViewController *weakSelf = self;
     _items = [_hnController loadStoriesFromCacheOfType:_currentSection];
     [self.collectionView reloadData];
+    [self.collectionView setContentOffset:CGPointZero animated:NO];
+    
+    __weak MAMViewController *weakSelf = self;
     [_hnController loadStoriesOfType:_currentSection result:^(NSArray *results, HNControllerStoryType type)
      {
          if (type != _currentSection) return;
          _items = results;
          [weakSelf reloadCollectionView];
-         [weakSelf.collectionView setContentOffset:CGPointZero animated:NO];
      }];
 }
+
+- (IBAction)swipe:(id)sender
+{
+    UISwipeGestureRecognizer *swipe = sender;
+    if (swipe.state == UIGestureRecognizerStateRecognized)
+    {
+        if (swipe.direction == UISwipeGestureRecognizerDirectionLeft)
+        {
+            if (_currentSection == 1)
+            {
+                [_bestButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            }
+            if (_currentSection == 0)
+            {
+                [_latestButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            }
+        }
+        if (swipe.direction == UISwipeGestureRecognizerDirectionRight)
+        {
+            if (_currentSection == 1)
+            {
+                [_trendingButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            }
+            if (_currentSection == 2)
+            {
+                [_latestButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            }
+        }
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
+}
+
 @end

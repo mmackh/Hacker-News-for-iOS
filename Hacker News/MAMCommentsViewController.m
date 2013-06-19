@@ -39,7 +39,6 @@
     [super viewDidLoad];
     
     __weak MAMCommentsViewController *weakSelf = self;
-    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 43, 0)];
     [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(40, 0, 0, 0)];
     [[MAMHNController sharedController] loadCommentsOnStoryWithID:_story.hnID result:^(NSArray *results)
     {

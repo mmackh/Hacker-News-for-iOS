@@ -1,10 +1,6 @@
 <html><head>
     <meta charset="utf-8">
                     <style type="text/css">
-                    * {
-                    -webkit-text-size-adjust: none !Important;		
-                    white-space: normal !Important;
-                    }
                     body {
                     font-family: "Helvetica Neue", sans-serif  !Important;
                     font-size: 16px !Important;
@@ -17,9 +13,6 @@
                     word-wrap: break-word !Important;
                     line-height:170% !Important;
                     overflow: hidden;
-                    }
-                    .story-Image.centeredImage {
-                      width:100% !important;
                     }
                     textarea {
                     display: none !important;
@@ -34,6 +27,7 @@
                     font-weight:bold !Important;
                     font-size: 1.4em !Important;
                     line-height:1.1em !Important;
+                       margin-bottom: 10px;
                     }
                     .title a {
                     text-decoration: none !Important;
@@ -52,10 +46,14 @@
                     font-size:1.0em !important;
                     }
                     .info {
-                    font-style: italic;
                     font-size: 0.9em;
                     color: #999;
                     }
+                        .info a
+                        {
+                            text-decoration: none;
+                            color: #999;
+                        }
                     .article a {
                     text-decoration: none !Important;
                     color: #333;
@@ -66,13 +64,11 @@ width: 100% !important;
 max-width 100% !important;
 }
                     img {
-                    max-width: 95% !important;
+                    max-width: 100% !important;
                     width: auto !important;
                     height: auto !important;
-                    padding:4px !important;
-                    border:1px solid #CCC !important;
                     margin: 0 auto !important;
-                    background-color: #FFF !important;
+                        border: 1px solid #DDD;
                     display: block !important;
                     }
                     .article video,
@@ -96,24 +92,12 @@ max-width 100% !important;
 			        outline: 0 !important;
 			        margin: 0 !important;
 			        background-color: transparent !important;
-			        -webkit-border-radius: 0 !important;
-		        	-webkit-box-shadow: none !important;
 	                }
 		            .article img[src*='.feedburner.com/~r/'],
 		            .article img[data-src*='.feedburner.com/~r/'] {
 		            display: none;
 		            }
-                    .hr {
-		            border: none;
-		            border-bottom: 1px solid white;
-		            border-top: 1px solid #CCC;
-		            clear: both;
-		            height: 0;
-		            width: 100%;
-		            margin-top:5px;
-		            margin-bottom:3px;
-		            }
                     </style>
-                    </head><body><div class="title"><a href="**[link]**">
-**[title]**</a></div><div class="info">Score on HN: **[points]** | **[comments]**</div><div class="hr"></div>
+                    </head><body><div class="info"><a href="http://**[domain]**">**[domain]**</a></div><div class="title"><a href="**[link]**">
+**[title]**</a></div>
 <div class="article">Loading...  </div></body></html>
