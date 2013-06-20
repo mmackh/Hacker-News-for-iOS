@@ -50,8 +50,8 @@
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:refreshControl];
     
-    [self refresh:nil];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)dealloc
@@ -133,7 +133,7 @@
         _items = results;
         [weakSelf reloadCollectionView];
         [weakSelf.collectionView setContentOffset:CGPointZero animated:YES];
-        if (sender)
+        if ([sender isKindOfClass:[UIRefreshControl class]])
         {
             UIRefreshControl *refreshControl = sender;
             [refreshControl endRefreshing];

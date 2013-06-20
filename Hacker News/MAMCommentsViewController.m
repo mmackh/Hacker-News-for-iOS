@@ -17,6 +17,7 @@
 @interface MAMCommentsViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -38,12 +39,22 @@
 {
     [super viewDidLoad];
     
+    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 44, 0)];
+    [self.titleLabel setText:@"Loading Comments..."];
+    
     __weak MAMCommentsViewController *weakSelf = self;
-    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(40, 0, 0, 0)];
     [[MAMHNController sharedController] loadCommentsOnStoryWithID:_story.hnID result:^(NSArray *results)
     {
+        if (!results.count)
+        {
+            [weakSelf.titleLabel setText:@"No Comments"];
+            return;
+        }
         _comments = results;
         [weakSelf.tableView reloadData];
+        [weakSelf.tableView flashScrollIndicators];
+        [weakSelf.titleLabel setText:self.story.title];
     }];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -71,46 +82,17 @@
 #pragma mark -
 #pragma mark TableView
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 40)];
-    [headerView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
-    
-    UILabel*headerLabel = [[UILabel alloc] initWithFrame:CGRectInset(headerView.bounds, 10, 0)];
-    [headerLabel setText:self.story.title];
-    [headerLabel setMinimumScaleFactor:0.8];
-    [headerLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
-    [headerLabel setTextColor:[UIColor whiteColor]];
-    [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [headerLabel setAdjustsFontSizeToFitWidth:YES];
-    [headerLabel setAdjustsLetterSpacingToFitWidth:YES];
-    [headerLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [headerView addSubview:headerLabel];
-    
-    UITapGestureRecognizer *headerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerTapped:)];
-    [headerTap setNumberOfTapsRequired:1];
-    [headerTap setNumberOfTouchesRequired:1];
-    [headerView addGestureRecognizer:headerTap];
-
-    return headerView;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"toWeb" sender:[NSURL URLWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/%@",[_comments[indexPath.row]replyID]]]];
 }
 
-- (void)headerTapped:(UITapGestureRecognizer *)tap
+- (IBAction)headerTap:(UITapGestureRecognizer *)sender
 {
-    if (tap.state == UIGestureRecognizerStateRecognized)
+    if (sender.state == UIGestureRecognizerStateRecognized)
     {
         [self performSegueWithIdentifier:@"toWeb" sender:[NSURL URLWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/item?id=%@",_story.hnID]]];
     }
-}
-
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

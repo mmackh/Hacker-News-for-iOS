@@ -7,6 +7,7 @@
 //
 
 #import "MAMWebViewController.h"
+#import "TUSafariActivity.h"
 
 @interface MAMWebViewController ()
 
@@ -56,7 +57,11 @@
 }
 - (IBAction)safari:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:self.webView.request.URL];
+    NSURL *URL = self.webView.request.URL;
+    TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
+    [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 - (void)loadURL:(NSURL *)URL

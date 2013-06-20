@@ -14,6 +14,9 @@
 #import "TFHpple.h"
 
 @implementation MAMHNController
+{
+    NSArray *_stories;
+}
 
 + (BOOL)isPad
 {
@@ -89,6 +92,7 @@
             [story setLink:[e child:@"link"].text];
             [results addObject:story];
         }];
+        _stories = results;
         completionBlock(results,storyType);
         [NSKeyedArchiver archiveRootObject:results toFile:[weakSelf pathForPersistedStoriesOfType:storyType]];
     }
@@ -97,6 +101,34 @@
         NSLog(@"%@",error.description);
     }];
     [operation start];
+}
+
+- (MAMHNStory *)nextStory:(MAMHNStory *)currentStory;
+{
+    int currentIndex = [self indexOfStory:currentStory];
+    if (currentIndex == _stories.count-1 || currentIndex == NSNotFound || currentIndex > 30) return nil;
+    return _stories[++currentIndex];
+}
+
+- (MAMHNStory *)previousStory:(MAMHNStory *)currentStory;
+{
+    int currentIndex = [self indexOfStory:currentStory];
+    if (currentIndex == 0 || currentIndex == NSNotFound) return nil;
+    return _stories[--currentIndex];
+}
+
+- (int)indexOfStory:(MAMHNStory *)story
+{
+    int index = 0;
+    for (MAMHNStory *subStory in _stories)
+    {
+        if ([subStory.hnID isEqualToString:story.hnID])
+        {
+            return index;
+        }
+        index++;
+    }
+    return NSNotFound;
 }
 
 - (void)loadCommentsOnStoryWithID:(NSString *)storyID result:(void(^)(NSArray *results))completionBlock
@@ -168,6 +200,7 @@
     NSString *path = [self pathForPersistedStoriesOfType:storyType];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) return nil;
     NSArray *results = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForPersistedStoriesOfType:storyType]];
+    _stories = results;
     return results;
 }
 

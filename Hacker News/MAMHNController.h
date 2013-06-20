@@ -28,6 +28,9 @@ typedef NS_ENUM(NSInteger, HNControllerStoryType)
 - (NSArray *)loadStoriesFromCacheOfType:(HNControllerStoryType)storyType;
 - (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type))completionBlock;
 
+- (MAMHNStory *)nextStory:(MAMHNStory *)currentStory;
+- (MAMHNStory *)previousStory:(MAMHNStory *)currentStory;
+
 - (void)loadCommentsOnStoryWithID:(NSString *)storyID result:(void(^)(NSArray *results))completionBlock;
 
 // Helpers

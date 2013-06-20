@@ -12,17 +12,35 @@
 #import "MAMCommentsViewController.h"
 #import "MAMWebViewController.h"
 #import "NSString+Additions.h"
+#import <QuartzCore/QuartzCore.h>
+#import "TUSafariActivity.h"
+
+typedef NS_ENUM(NSInteger, StoryTransitionType)
+{
+    StoryTransitionTypeNext,
+    StoryTransitionTypePrevious
+};
+
+typedef NS_ENUM(NSInteger, FontSizeChangeType)
+{
+    FontSizeChangeTypeIncrease,
+    FontSizeChangeTypeDecrease,
+    FontSizeChangeTypeNone
+};
 
 @interface MAMReaderViewController () <UIGestureRecognizerDelegate,UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+- (IBAction)tabButtonTapped:(id)sender;
+
 @end
 
 @implementation MAMReaderViewController
 {
-    __weak MAMHNStory *_story;
+    MAMHNStory *_story;
     NSMutableString *_string;
+    int _currentFontSize;
 }
 
 #pragma mark -
@@ -40,6 +58,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"ftsz"] == nil)
+    {
+        _currentFontSize = 100;
+    }
+    else
+    {
+        _currentFontSize = [[NSUserDefaults standardUserDefaults] integerForKey:@"ftsz"];
+    }
+    
     for(UIView *view in [[[self.webView subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[UIImageView class]]) { view.hidden = YES; }
     }
@@ -71,15 +99,16 @@
 - (void)setStory:(MAMHNStory *)story
 {
     _story = story;
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
     
     NSString *storyLink = story.link.localCachePath;
     if ([[NSFileManager defaultManager] fileExistsAtPath:storyLink])
     {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:20]];
+        NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:storyLink] encoding:NSUTF8StringEncoding error:nil];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
         return;
     }
     
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
     NSMutableString *string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
     [string replaceOccurrencesOfString:@"**[title]**" withString:_story.title options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[points]**" withString:_story.score options:0 range:NSMakeRange(0, string.length)];
@@ -103,7 +132,40 @@
 }
 
 #pragma mark -
+#pragma mark Fontsize Change
+
+- (IBAction)fontSizePinch:(id)sender
+{
+    UIPinchGestureRecognizer *pinch = sender;
+    if (pinch.state == UIGestureRecognizerStateRecognized)
+    {
+        [self changeFontSize:(pinch.scale > 1)?FontSizeChangeTypeIncrease:FontSizeChangeTypeDecrease];
+    }
+}
+
+- (void)changeFontSize:(FontSizeChangeType)changeType
+{
+    if (changeType == FontSizeChangeTypeIncrease && _currentFontSize == 160) return;
+    if (changeType == FontSizeChangeTypeDecrease && _currentFontSize == 50) return;
+    if (changeType != FontSizeChangeTypeNone)
+    {
+        _currentFontSize = (changeType == FontSizeChangeTypeIncrease) ? _currentFontSize + 5 : _currentFontSize - 5;
+        [[NSUserDefaults standardUserDefaults] setInteger:_currentFontSize forKey:@"ftsz"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
+                          _currentFontSize];
+    [self.webView stringByEvaluatingJavaScriptFromString:jsString];
+}
+
+
+#pragma mark -
 #pragma mark WebView
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self changeFontSize:FontSizeChangeTypeNone];
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -152,6 +214,51 @@
         MAMCommentsViewController *commentsViewController = segue.destinationViewController;
         [commentsViewController setStory:self.story];
     }
+}
+
+- (IBAction)tabButtonTapped:(id)sender
+{
+    int numberOfButtonTapped = [sender tag];
+    switch (numberOfButtonTapped)
+    {
+        case 0:
+            [self back:nil];
+            break;
+        case 1:
+            [self transitionToStory:StoryTransitionTypePrevious];
+            break;
+        case 2:
+            [self transitionToStory:StoryTransitionTypeNext];
+            break;
+        case 3:
+            [self performSegueWithIdentifier:@"toComments" sender:nil];
+            break;
+        case 4:
+        {
+            NSURL *URL = [NSURL URLWithString:self.story.link];
+            TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
+            [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
+            [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+        }
+            break;
+    }
+}
+
+- (void)transitionToStory:(StoryTransitionType)transitionType
+{
+    MAMHNController *hnController = [MAMHNController sharedController];
+    MAMHNStory *story = (transitionType == StoryTransitionTypeNext) ? [hnController nextStory:_story] : [hnController previousStory:_story];
+    if (story == nil) return;
+    
+    CATransition *animation = [CATransition animation];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:(transitionType == StoryTransitionTypeNext ? kCATransitionFromTop : kCATransitionFromBottom)];
+    [animation setDuration:0.5f];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [[self.webView layer] addAnimation:animation forKey:nil];
+
+    [self setStory:story];
 }
 
 @end
