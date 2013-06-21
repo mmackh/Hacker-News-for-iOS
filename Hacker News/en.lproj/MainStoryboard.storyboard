@@ -747,8 +747,6 @@
         <class className="MAMCommentsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMCommentsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="back:"/>
-                <relationship kind="action" name="headerTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
@@ -757,6 +755,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMReaderViewController.h"/>
             <relationships>
                 <relationship kind="action" name="tabButtonTapped:"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>

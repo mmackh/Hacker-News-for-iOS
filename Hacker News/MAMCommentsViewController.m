@@ -9,7 +9,6 @@
 #import "MAMCommentsViewController.h"
 
 // Dependancies
-#import "MAMHNController.h"
 #import "MAMCommentTableViewCell.h"
 #import "TTTAttributedLabel.h"
 #import "MAMWebViewController.h"
@@ -39,8 +38,10 @@
 {
     [super viewDidLoad];
     
-    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
-    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 44, 0)];
+    BOOL isPad = [MAMHNController isPad];
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
+    [self.tableView setScrollIndicatorInsets:edgeInsets];
+    [self.tableView setContentInset:edgeInsets];
     [self.titleLabel setText:@"Loading Comments..."];
     
     __weak MAMCommentsViewController *weakSelf = self;
@@ -118,8 +119,13 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static float screenWidth;
+    if (screenWidth == 0)
+    {
+        screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    }
     MAMHNComment *hnComment = _comments[indexPath.row];
-    float width = (self.tableView.bounds.size.width - ([hnComment indentationLevel] * 10)  - 20);
+    float width = (screenWidth - ([hnComment indentationLevel] * 10)  - 20);
     return [MAMCommentTableViewCell heightForCellWithText:hnComment.comment constrainedToWidth:width];
 }
 

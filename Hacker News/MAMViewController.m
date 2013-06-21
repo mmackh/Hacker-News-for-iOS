@@ -9,7 +9,6 @@
 #import "MAMViewController.h"
 
 //Dependancies
-#import "MAMHNController.h"
 #import "MAMCollectionViewCell.h"
 #import "MAMReaderViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -151,7 +150,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height);
+    static int fontSize = 0;
+    if (fontSize == 0)
+    {
+        fontSize = ([MAMHNController isPad])?20:17;
+    }
+    return CGSizeMake(self.collectionView.bounds.size.width, 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:fontSize] constrainedToSize:CGSizeMake(self.collectionView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height);
 }
 
 #pragma mark -

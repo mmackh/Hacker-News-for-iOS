@@ -30,10 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    BOOL isPad = [MAMHNController isPad];
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
+    [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
+    [self.webView.scrollView setContentInset:edgeInsets];
+    
     [self.webView loadRequest:[NSURLRequest requestWithURL:_URLToLoad]];
-    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
-    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 44, 0)];
 }
 
 - (IBAction)dismiss:(id)sender

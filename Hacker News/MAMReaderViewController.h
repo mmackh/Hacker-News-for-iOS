@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MAMHNController.h"
 
 @protocol ReaderViewDelegate <NSObject>
 

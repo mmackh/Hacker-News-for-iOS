@@ -34,6 +34,9 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 
 - (IBAction)tabButtonTapped:(id)sender;
 
+// iPad Only
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+
 @end
 
 @implementation MAMReaderViewController
@@ -41,6 +44,9 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     MAMHNStory *_story;
     NSMutableString *_string;
     int _currentFontSize;
+    
+    //iPad Specifics
+    UIPopoverController *_popoverController;
 }
 
 #pragma mark -
@@ -71,7 +77,11 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     for(UIView *view in [[[self.webView subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[UIImageView class]]) { view.hidden = YES; }
     }
-    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 44, 0)];
+    
+    BOOL isPad = [MAMHNController isPad];
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
+    [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
+    [self.webView.scrollView setContentInset:edgeInsets];
     
     UITapGestureRecognizer *imageTapDetector = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [imageTapDetector setNumberOfTapsRequired:1];
@@ -105,24 +115,28 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     if ([[NSFileManager defaultManager] fileExistsAtPath:storyLink])
     {
         NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:storyLink] encoding:NSUTF8StringEncoding error:nil];
+        htmlString = [htmlString stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize]];
         [self.webView loadHTMLString:htmlString baseURL:nil];
         return;
     }
     
-    NSMutableString *string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
+    NSMutableString *string = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:([MAMHNController isPad])?@"view_Pad":@"view" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil] mutableCopy];
     [string replaceOccurrencesOfString:@"**[title]**" withString:_story.title options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[points]**" withString:_story.score options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[domain]**" withString:_story.domain options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[link]**" withString:_story.link options:0 range:NSMakeRange(0, string.length)];
+    
     _string = string;
     [self.webView loadHTMLString:string baseURL:nil];
     __weak MAMReaderViewController *weakSelf = self;
     [_story loadClearReadLoadBody:^(NSString *resultBody)
      {
-         NSString *clearReadDocument = [_string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
+         NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink]];
-         [weakSelf.webView loadRequest:request];
+         
+         NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:storyLink] encoding:NSUTF8StringEncoding error:nil];
+         htmlString = [htmlString stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize]];
+         [weakSelf.webView loadHTMLString:htmlString baseURL:nil];
      }];
 }
 
@@ -161,11 +175,6 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 
 #pragma mark -
 #pragma mark WebView
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [self changeFontSize:FontSizeChangeTypeNone];
-}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -239,7 +248,16 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
             TUSafariActivity *activity = [[TUSafariActivity alloc] init];
             UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
             [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
-            [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+            
+            if ([MAMHNController isPad])
+            {
+                _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+                [_popoverController presentPopoverFromRect:self.shareButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+            else
+            {
+                [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+            }
         }
             break;
     }
