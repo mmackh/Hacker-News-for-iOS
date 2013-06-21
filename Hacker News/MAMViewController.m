@@ -14,7 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MAMButton.h"
 
-@interface MAMViewController () <UIGestureRecognizerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate,ReaderViewDelegate>
+@interface MAMViewController () <UIGestureRecognizerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ReaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -131,7 +131,7 @@
     {
         if (!success)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:weakSelf cancelButtonTitle:@"Try again" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             return;
         }
@@ -214,7 +214,7 @@
      {
          if (!success)
          {
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:weakSelf cancelButtonTitle:@"Try again" otherButtonTitles:nil];
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
              [alert show];
              return;
          }
@@ -222,11 +222,6 @@
          _items = results;
          [weakSelf reloadCollectionView];
      }];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self refresh:nil];
 }
 
 - (IBAction)swipe:(id)sender

@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     BOOL isPad = [MAMHNController isPad];
-    UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?0:0, 0, (isPad)?0:44, 0);
     [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
     [self.webView.scrollView setContentInset:edgeInsets];
     
@@ -94,7 +94,7 @@
     UIGestureRecognizer *swipe = sender;
     if (swipe.state == UIGestureRecognizerStateRecognized)
     {
-        [self back:nil];
+        [self dismiss:nil];
     }
 }
 

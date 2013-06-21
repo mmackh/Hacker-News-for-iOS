@@ -498,9 +498,9 @@
                                             <constraint firstAttribute="height" constant="1" type="user" id="iRF-1d-Owo"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" alpha="0.69999998807907104" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yjy-LI-x3e">
+                                    <label opaque="NO" clipsSubviews="YES" alpha="0.69999998807907104" contentMode="left" text="test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yjy-LI-x3e">
                                         <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <connections>
@@ -681,15 +681,19 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="BvZ-LZ-n9w" firstAttribute="leading" secondItem="Oxl-ZS-I5U" secondAttribute="leading" type="default" id="2rj-J1-h6a"/>
                             <constraint firstItem="HPf-y8-acw" firstAttribute="trailing" secondItem="Oxl-ZS-I5U" secondAttribute="trailing" type="default" id="4yF-yh-kXM"/>
-                            <constraint firstItem="HPf-y8-acw" firstAttribute="top" secondItem="Oxl-ZS-I5U" secondAttribute="top" type="default" id="d9L-xx-k4y"/>
                             <constraint firstItem="BvZ-LZ-n9w" firstAttribute="trailing" secondItem="Oxl-ZS-I5U" secondAttribute="trailing" type="default" id="dsl-Oc-93q"/>
                             <constraint firstItem="HPf-y8-acw" firstAttribute="leading" secondItem="Oxl-ZS-I5U" secondAttribute="leading" type="default" id="eLw-Rz-cLQ"/>
                             <constraint firstItem="BvZ-LZ-n9w" firstAttribute="top" secondItem="Oxl-ZS-I5U" secondAttribute="top" type="user" id="gKb-lc-uvx"/>
                             <constraint firstItem="HPf-y8-acw" firstAttribute="bottom" secondItem="Oxl-ZS-I5U" secondAttribute="bottom" type="default" id="nzG-An-ZhR"/>
+                            <constraint firstItem="HPf-y8-acw" firstAttribute="top" secondItem="Oxl-ZS-I5U" secondAttribute="top" constant="44" type="user" id="wNw-n5-72I"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Suj-2j-CbL" appends="YES" id="rok-b7-eEg"/>
+                        </connections>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
@@ -786,6 +790,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changeSection:"/>
+                <relationship kind="action" name="refresh:"/>
+                <relationship kind="action" name="swipe:"/>
                 <relationship kind="outlet" name="bestButton" candidateClass="MAMButton"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="latestButton" candidateClass="MAMButton"/>
@@ -796,10 +802,6 @@
         <class className="MAMWebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMWebViewController.h"/>
             <relationships>
-                <relationship kind="action" name="back:"/>
-                <relationship kind="action" name="dismiss:"/>
-                <relationship kind="action" name="forward:"/>
-                <relationship kind="action" name="safari:"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
@@ -832,6 +834,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nbW-XS-bkA"/>
+        <segue reference="5ue-mo-gvD"/>
     </inferredMetricsTieBreakers>
 </document>
