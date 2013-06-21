@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, HNControllerStoryType)
 
 // Methods
 - (NSArray *)loadStoriesFromCacheOfType:(HNControllerStoryType)storyType;
-- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type))completionBlock;
+- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type, BOOL success))completionBlock;
 
 - (MAMHNStory *)nextStory:(MAMHNStory *)currentStory;
 - (MAMHNStory *)previousStory:(MAMHNStory *)currentStory;

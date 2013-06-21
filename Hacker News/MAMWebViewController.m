@@ -9,13 +9,18 @@
 #import "MAMWebViewController.h"
 #import "TUSafariActivity.h"
 
-@interface MAMWebViewController ()
+@interface MAMWebViewController () <UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @end
 
 @implementation MAMWebViewController
 {
     NSURL *_URLToLoad;
+    
+    // iPad Specifics
+    UIPopoverController *_popoverController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -64,12 +69,38 @@
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
     [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
-    [self presentViewController:activityViewController animated:YES completion:nil];
+    
+    if ([MAMHNController isPad])
+    {
+        _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+        [_popoverController presentPopoverFromRect:self.shareButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    else
+    {
+        [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+    }
 }
 
 - (void)loadURL:(NSURL *)URL
 {
     _URLToLoad = URL;
+}
+
+#pragma mark -
+#pragma mark Gesture Recognizer
+
+- (IBAction)twoSwipeDetected:(id)sender
+{
+    UIGestureRecognizer *swipe = sender;
+    if (swipe.state == UIGestureRecognizerStateRecognized)
+    {
+        [self back:nil];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 @end

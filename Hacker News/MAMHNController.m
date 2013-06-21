@@ -49,7 +49,7 @@
     return self;
 }
 
-- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type))completionBlock
+- (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type, BOOL success))completionBlock
 {
     static const NSString *host = @"http://api.thequeue.org/hn/";
     NSString *targetURLString;
@@ -93,12 +93,13 @@
             [results addObject:story];
         }];
         _stories = results;
-        completionBlock(results,storyType);
+        completionBlock(results,storyType,YES);
         [NSKeyedArchiver archiveRootObject:results toFile:[weakSelf pathForPersistedStoriesOfType:storyType]];
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         NSLog(@"%@",error.description);
+        completionBlock(nil,storyType,NO);
     }];
     [operation start];
 }

@@ -339,17 +339,11 @@
                                             <action selector="tabButtonTapped:" destination="FXs-js-qrL" eventType="touchUpInside" id="cPL-ck-JNb"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="background_page.png" translatesAutoresizingMaskIntoConstraints="NO" id="o86-fP-ecD">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1004" id="DCc-vI-3p5"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstItem="72R-bm-xJ2" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="5bM-sf-Sm3"/>
                                     <constraint firstItem="72R-bm-xJ2" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="user" id="6jS-JL-1ld"/>
-                                    <constraint firstItem="o86-fP-ecD" firstAttribute="leading" secondItem="MOy-Sq-aDH" secondAttribute="leading" type="default" id="7qb-EF-RuF"/>
                                     <constraint firstAttribute="height" constant="44" type="user" id="9N0-1I-kRz"/>
                                     <constraint firstItem="htR-da-ZSP" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="9np-nf-n10"/>
                                     <constraint firstItem="RvZ-1q-bWh" firstAttribute="leading" secondItem="MOy-Sq-aDH" secondAttribute="leading" type="default" id="D5l-Fd-QhA"/>
@@ -364,19 +358,23 @@
                                     <constraint firstItem="RvZ-1q-bWh" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="lBl-TA-i2M"/>
                                     <constraint firstItem="RvZ-1q-bWh" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="n8N-wz-bL2"/>
                                     <constraint firstItem="htR-da-ZSP" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="nhp-HL-59l"/>
-                                    <constraint firstItem="o86-fP-ecD" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="wPF-8F-AA3"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleAspectFit" image="line_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="2yN-rL-8Mj"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="background_page.png" translatesAutoresizingMaskIntoConstraints="NO" id="hr9-rv-D47"/>
                         </subviews>
                         <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="default" id="4He-z4-AvR"/>
+                            <constraint firstItem="hr9-rv-D47" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="default" id="5zb-JO-cBy"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="user" id="6sX-aJ-9G8"/>
+                            <constraint firstItem="hr9-rv-D47" firstAttribute="bottom" secondItem="GY4-lm-rgQ" secondAttribute="bottom" type="default" id="9Yy-Te-Mci"/>
+                            <constraint firstItem="hr9-rv-D47" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="user" id="ADK-XZ-1kT"/>
                             <constraint firstItem="2yN-rL-8Mj" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="default" id="Ck5-Td-3JZ"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="user" id="Ibd-9s-6d9"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="default" id="SPx-59-p3x"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="bottom" secondItem="GY4-lm-rgQ" secondAttribute="bottom" type="default" id="T0t-By-3Au"/>
+                            <constraint firstItem="hr9-rv-D47" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="user" id="Vhh-i1-iaa"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="default" id="XI9-yB-o76"/>
                             <constraint firstItem="2yN-rL-8Mj" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" constant="44" type="user" id="d3z-RZ-R6r"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="default" id="y0V-yi-yDA"/>
@@ -384,7 +382,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rwR-gk-YLZ"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="shareButton" destination="htR-da-ZSP" id="JqP-3P-oMK"/>
                         <outlet property="webView" destination="2Uh-Ih-uGv" id="3T8-Ei-Xzg"/>
@@ -594,7 +591,11 @@
                         <subviews>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPf-y8-acw">
                                 <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                <gestureRecognizers/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Suj-2j-CbL" appends="YES" id="n8h-UG-qC5"/>
+                                </connections>
                             </webView>
                             <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvZ-LZ-n9w">
                                 <subviews>
@@ -664,16 +665,11 @@
                                 <constraints>
                                     <constraint firstItem="mo1-b7-Erc" firstAttribute="leading" secondItem="BvZ-LZ-n9w" secondAttribute="leading" constant="144" id="AZT-3Q-b4w"/>
                                     <constraint firstItem="8E7-pQ-EGH" firstAttribute="top" secondItem="BvZ-LZ-n9w" secondAttribute="top" type="default" id="BE0-j9-Ch4"/>
-                                    <constraint firstItem="1di-YW-2nw" firstAttribute="baseline" secondItem="jlf-Ab-5vb" secondAttribute="baseline" type="default" id="GTd-nz-F2F"/>
-                                    <constraint firstItem="mo1-b7-Erc" firstAttribute="baseline" secondItem="8E7-pQ-EGH" secondAttribute="baseline" type="default" id="GaC-cf-de3"/>
                                     <constraint firstItem="8E7-pQ-EGH" firstAttribute="leading" secondItem="BvZ-LZ-n9w" secondAttribute="leading" type="default" id="K7H-vv-FSL"/>
                                     <constraint firstItem="8E7-pQ-EGH" firstAttribute="bottom" secondItem="BvZ-LZ-n9w" secondAttribute="bottom" type="user" id="LY1-3s-8XS"/>
-                                    <constraint firstItem="1di-YW-2nw" firstAttribute="baseline" secondItem="8E7-pQ-EGH" secondAttribute="baseline" type="default" id="N47-gQ-FmF"/>
                                     <constraint firstItem="mo1-b7-Erc" firstAttribute="leading" secondItem="jlf-Ab-5vb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="NEX-pb-bNM"/>
                                     <constraint firstItem="1di-YW-2nw" firstAttribute="top" secondItem="BvZ-LZ-n9w" secondAttribute="top" type="default" id="TB5-sp-Jfu"/>
                                     <constraint firstItem="jlf-Ab-5vb" firstAttribute="top" secondItem="BvZ-LZ-n9w" secondAttribute="top" type="default" id="UKF-re-DMu"/>
-                                    <constraint firstItem="mo1-b7-Erc" firstAttribute="baseline" secondItem="jlf-Ab-5vb" secondAttribute="baseline" type="default" id="d7T-ba-Y4E"/>
-                                    <constraint firstItem="mo1-b7-Erc" firstAttribute="baseline" secondItem="1di-YW-2nw" secondAttribute="baseline" type="default" id="eCz-62-dkV"/>
                                     <constraint firstItem="mo1-b7-Erc" firstAttribute="bottom" secondItem="BvZ-LZ-n9w" secondAttribute="bottom" type="user" id="fcT-ov-EYY"/>
                                     <constraint firstItem="jlf-Ab-5vb" firstAttribute="leading" secondItem="8E7-pQ-EGH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="grr-zS-NY2"/>
                                     <constraint firstItem="1di-YW-2nw" firstAttribute="bottom" secondItem="BvZ-LZ-n9w" secondAttribute="bottom" type="default" id="tQw-OB-4dD"/>
@@ -697,10 +693,17 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
+                        <outlet property="shareButton" destination="1di-YW-2nw" id="u7R-3Y-6Qi"/>
                         <outlet property="webView" destination="HPf-y8-acw" id="mYA-Nw-gBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56W-Ar-UYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="Suj-2j-CbL">
+                    <connections>
+                        <action selector="twoSwipeDetected:" destination="gCb-IK-kFQ" id="4yK-xU-tmI"/>
+                        <outlet property="delegate" destination="gCb-IK-kFQ" id="jql-IV-XGj"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1715" y="-1092"/>
         </scene>
@@ -731,7 +734,7 @@
         <image name="arrow-up.png" width="32" height="32"/>
         <image name="back-white.png" width="32" height="32"/>
         <image name="back.png" width="32" height="32"/>
-        <image name="background_page.png" width="768" height="1024"/>
+        <image name="background_page.png" width="1024" height="1"/>
         <image name="best.png" width="18" height="14"/>
         <image name="cancel-white.png" width="32" height="32"/>
         <image name="clock.png" width="18" height="18"/>
@@ -765,6 +768,8 @@
         <class className="MAMCommentsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMCommentsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="headerTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
@@ -791,6 +796,11 @@
         <class className="MAMWebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMWebViewController.h"/>
             <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="action" name="forward:"/>
+                <relationship kind="action" name="safari:"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
@@ -811,6 +821,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
