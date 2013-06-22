@@ -10,6 +10,7 @@ Philosophy
 - Minimal network usage
 - No orange
 - Easy to understand code
+- Future proof design, ready for iOS7
 
 Support
 ------
