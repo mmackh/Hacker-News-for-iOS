@@ -77,7 +77,7 @@
     }
     else
     {
-        [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
     }
 }
 

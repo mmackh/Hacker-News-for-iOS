@@ -2,10 +2,13 @@ Hacker News for iOS
 ===================
 A Hacker News client for iPad and iPhone written in Objective-C.
 
+![Preview](https://github.com/mmackh/Hacker-News-for-iOS/raw/master/preview.png)
+
 Philosophy
 ------
 - Highlight the content, make browsing HN fast and enjoyable through an easy on the eye design.
 - Minimal network usage
+- No orange
 - Easy to understand code
 
 Support
