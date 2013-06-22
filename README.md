@@ -34,8 +34,15 @@ Attribution
 - [TTTAttributedLabel](https://github.com/mattt/TTTAttributedLabel)
 - [TUSafariActivity](https://github.com/davbeck/TUSafariActivity)
 
+Disclaimer
+----
+Not affiliated or endorsed by news.ycombinator.com
+
 License
 ----
+
+This repository is licensed under the standard MIT license. Any third party code that appears in this repository is licensed under the terms the original author laid out and does not transfer to my licensure. 
+
 The MIT License (MIT)
 
 Copyright (c) 2013 Maximilian Mackh (http://inoads.com) and its contributors
