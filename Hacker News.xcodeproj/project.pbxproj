@@ -27,7 +27,7 @@
 		223191D4176C5E4F0006084D /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191C9176C5E4F0006084D /* AFURLConnectionOperation.m */; };
 		223191D5176C5E4F0006084D /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191CB176C5E4F0006084D /* AFXMLRequestOperation.m */; };
 		223191D6176C5E4F0006084D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191CD176C5E4F0006084D /* UIImageView+AFNetworking.m */; };
-		223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191DB176C5EB40006084D /* MAMCollectionViewCell.m */; };
+		223191DC176C5EB40006084D /* MAMStoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 223191DB176C5EB40006084D /* MAMStoryTableViewCell.m */; };
 		223191DE176C5ECF0006084D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223191DD176C5ECF0006084D /* MobileCoreServices.framework */; };
 		223191E0176C5ED40006084D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223191DF176C5ED40006084D /* SystemConfiguration.framework */; };
 		2231921A176C6E9B0006084D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22319219176C6E9B0006084D /* libxml2.dylib */; };
@@ -50,6 +50,7 @@
 		22382339176D189D008E9CED /* stats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2238232B176D189D008E9CED /* stats@2x.png */; };
 		2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */; };
 		2261F732176CE2E300CB2213 /* view.html in Resources */ = {isa = PBXBuildFile; fileRef = 2261F731176CE2E300CB2213 /* view.html */; };
+		226339AC177B85A700B2270A /* MDSlideNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226339AB177B85A700B2270A /* MDSlideNavigationViewController.m */; };
 		226BA886177221B800FD34B1 /* MAMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 226BA885177221B800FD34B1 /* MAMButton.m */; };
 		2299522C17732C6900033D6F /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299522217732C6900033D6F /* arrow-down.png */; };
 		2299522D17732C6900033D6F /* arrow-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299522317732C6900033D6F /* arrow-down@2x.png */; };
@@ -142,8 +143,8 @@
 		223191CB176C5E4F0006084D /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		223191CC176C5E4F0006084D /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		223191CD176C5E4F0006084D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		223191DA176C5EB40006084D /* MAMCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMCollectionViewCell.h; sourceTree = "<group>"; };
-		223191DB176C5EB40006084D /* MAMCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMCollectionViewCell.m; sourceTree = "<group>"; };
+		223191DA176C5EB40006084D /* MAMStoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMStoryTableViewCell.h; sourceTree = "<group>"; };
+		223191DB176C5EB40006084D /* MAMStoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMStoryTableViewCell.m; sourceTree = "<group>"; };
 		223191DD176C5ECF0006084D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		223191DF176C5ED40006084D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		22319219176C6E9B0006084D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -169,6 +170,8 @@
 		2261F72E176CDF1500CB2213 /* MAMReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMReaderViewController.h; sourceTree = "<group>"; };
 		2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMReaderViewController.m; sourceTree = "<group>"; };
 		2261F731176CE2E300CB2213 /* view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = view.html; sourceTree = "<group>"; };
+		226339AA177B85A700B2270A /* MDSlideNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSlideNavigationViewController.h; sourceTree = "<group>"; };
+		226339AB177B85A700B2270A /* MDSlideNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSlideNavigationViewController.m; sourceTree = "<group>"; };
 		226BA884177221B800FD34B1 /* MAMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMButton.h; sourceTree = "<group>"; };
 		226BA885177221B800FD34B1 /* MAMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMButton.m; sourceTree = "<group>"; };
 		2299522217732C6900033D6F /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
@@ -374,6 +377,7 @@
 		223191D7176C5E570006084D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				226339AD177B85BE00B2270A /* MDSlideNavigationViewController */,
 				229952751773B16500033D6F /* TUSafariActivity */,
 				22CB50BE176F8EE7006DA4AC /* TTAttributedLabel */,
 				22CB50B1176F16E1006DA4AC /* Hpple */,
@@ -416,6 +420,15 @@
 				226BA88C1772596300FD34B1 /* Reader */,
 			);
 			name = Interface;
+			sourceTree = "<group>";
+		};
+		226339AD177B85BE00B2270A /* MDSlideNavigationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				226339AA177B85A700B2270A /* MDSlideNavigationViewController.h */,
+				226339AB177B85A700B2270A /* MDSlideNavigationViewController.m */,
+			);
+			name = MDSlideNavigationViewController;
 			sourceTree = "<group>";
 		};
 		226BA88B1772588800FD34B1 /* Home */ = {
@@ -521,8 +534,8 @@
 			children = (
 				223191A6176C3AEA0006084D /* MAMViewController.h */,
 				223191A7176C3AEA0006084D /* MAMViewController.m */,
-				223191DA176C5EB40006084D /* MAMCollectionViewCell.h */,
-				223191DB176C5EB40006084D /* MAMCollectionViewCell.m */,
+				223191DA176C5EB40006084D /* MAMStoryTableViewCell.h */,
+				223191DB176C5EB40006084D /* MAMStoryTableViewCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -679,7 +692,7 @@
 				223191D4176C5E4F0006084D /* AFURLConnectionOperation.m in Sources */,
 				223191D5176C5E4F0006084D /* AFXMLRequestOperation.m in Sources */,
 				223191D6176C5E4F0006084D /* UIImageView+AFNetworking.m in Sources */,
-				223191DC176C5EB40006084D /* MAMCollectionViewCell.m in Sources */,
+				223191DC176C5EB40006084D /* MAMStoryTableViewCell.m in Sources */,
 				223207AF176CC6540036EC23 /* RXMLElement.m in Sources */,
 				2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */,
 				22B2650A176DA934001D6656 /* MAMWebViewController.m in Sources */,
@@ -693,6 +706,7 @@
 				22CB50D4176FA375006DA4AC /* TTTAttributedLabel.m in Sources */,
 				226BA886177221B800FD34B1 /* MAMButton.m in Sources */,
 				229952801773B16500033D6F /* TUSafariActivity.m in Sources */,
+				226339AC177B85A700B2270A /* MDSlideNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
