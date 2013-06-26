@@ -21,6 +21,9 @@
 @property (nonatomic,copy) NSString *hostValue;
 @property (nonatomic,copy) NSString *hnID;
 
+- (NSString *)subtitle;
+- (NSString *)footer;
+
 - (NSString *)domain;
 - (void)loadClearReadLoadBody:(void(^)(NSString *resultBody))completionBlock;
 

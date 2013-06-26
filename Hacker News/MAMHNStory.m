@@ -14,6 +14,26 @@
 
 @implementation MAMHNStory
 
+- (NSString *)subtitle
+{
+    static NSString *subtitle = nil;
+    if (!subtitle)
+    {
+        subtitle = [NSString stringWithFormat:@"Submitted %@ by %@",self.pubDate,self.user];
+    }
+    return subtitle;
+}
+
+- (NSString *)footer
+{
+    static NSString *footer = nil;
+    if (!footer)
+    {
+        footer = [NSString stringWithFormat:@"%@ | %@",self.score,self.commentsValue];
+    }
+    return footer;
+}
+
 - (NSString *)domain
 {
     return [[NSURL URLWithString:self.link] host];
