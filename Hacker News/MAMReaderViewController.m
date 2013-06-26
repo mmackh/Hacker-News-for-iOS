@@ -133,10 +133,8 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
      {
          NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         
-         NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:storyLink] encoding:NSUTF8StringEncoding error:nil];
-         htmlString = [htmlString stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize]];
-         [weakSelf.webView loadHTMLString:htmlString baseURL:nil];
+         [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink]]];
+         [self changeFontSize:FontSizeChangeTypeNone];
      }];
 }
 
