@@ -721,7 +721,7 @@
         <!--Slide Navigation View Controller-->
         <scene sceneID="DQ2-io-ZAt">
             <objects>
-                <navigationController navigationBarHidden="YES" id="mYO-Zq-dBC" customClass="MDSlideNavigationViewController" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="mYO-Zq-dBC" customClass="MAMSlideNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PpP-rJ-mDV">
@@ -782,6 +782,9 @@
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
+        <class className="MAMSlideNavigationViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMSlideNavigationViewController.h"/>
+        </class>
         <class className="MAMStoryTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMStoryTableViewCell.h"/>
             <relationships>
@@ -809,9 +812,6 @@
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
-        </class>
-        <class className="MDSlideNavigationViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MDSlideNavigationViewController.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
