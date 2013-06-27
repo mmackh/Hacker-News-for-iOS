@@ -133,8 +133,13 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
      {
          NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink]]];
-         [self changeFontSize:FontSizeChangeTypeNone];
+         [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20]];
+         double delayInSeconds = .2;
+         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+         dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+         {
+             [weakSelf changeFontSize:FontSizeChangeTypeNone];
+         });
      }];
 }
 
