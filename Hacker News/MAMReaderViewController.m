@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 - (void)setStory:(MAMHNStory *)story
 {
     _story = story;
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.open();document.close();"];
     
     NSString *storyLink = story.link.localCachePath;
     if ([[NSFileManager defaultManager] fileExistsAtPath:storyLink])
