@@ -11,6 +11,7 @@ Philosophy
 - No orange
 - Easy to understand code
 - Future proof design, ready for iOS7
+- A pure design asthetic & UX as inspiration for your future reading apps
 
 Support
 ------
