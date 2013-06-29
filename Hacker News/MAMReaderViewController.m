@@ -14,6 +14,7 @@
 #import "NSString+Additions.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TUSafariActivity.h"
+#import "PocketAPIActivity.h"
 
 typedef NS_ENUM(NSInteger, StoryTransitionType)
 {
@@ -248,8 +249,9 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         case 4:
         {
             NSURL *URL = [NSURL URLWithString:self.story.link];
-            TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
+            TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
+            PocketAPIActivity *pocketActivity = [[PocketAPIActivity alloc] init];
+            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[safariActivity, pocketActivity]];
             [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
             
             if ([MAMHNController isPad])
