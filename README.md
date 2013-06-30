@@ -19,7 +19,7 @@ You can always compile your own version for for free, but consider supporting de
 
 Todo
 ------
-1. UIActivity support for 'Read it Later' services like Readability, Instapaper ~~ & Pocket ~~ (thanks ZachOrr)
+1. UIActivity support for 'Read it Later' services like Readability, Instapaper ~~& Pocket~~ (thanks ZachOrr)
 2. Logging in to vote and comment instead of redirecting to a UIWebView
 3. Night Mode
 4. ? (Suggestions welcome)
