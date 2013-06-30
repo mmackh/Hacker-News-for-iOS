@@ -8,7 +8,7 @@
 
 #import "MAMAppDelegate.h"
 #import "PocketAPI.h"
-#import "Constants.h"
+#import "MAMConstants.h"
 
 @implementation MAMAppDelegate
 
@@ -19,31 +19,14 @@
     NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"hncache"];
     [NSURLCache setSharedURLCache:sharedCache];
     
-    NSString *pocketConsumerKey = @"";
-    if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"])
-    {
-        pocketConsumerKey = kPocketConsumerKeyiPad;
-    }
-    else
-    {
-        pocketConsumerKey = kPocketConsumerKeyiPhone;
-    }
+    NSString *pocketConsumerKey = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? kPocketConsumerKeyiPad : kPocketConsumerKeyiPhone;
     [[PocketAPI sharedAPI] setConsumerKey:pocketConsumerKey];
-    
     return YES;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if([[PocketAPI sharedAPI] handleOpenURL:url])
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-    
+    return ([[PocketAPI sharedAPI] handleOpenURL:url]) ? YES : NO;
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application

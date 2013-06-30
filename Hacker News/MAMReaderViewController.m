@@ -208,6 +208,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         if ([imageFormats containsObject:imageURL.pathExtension])
         {
             NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageURL] cachePolicy:NSURLRequestReturnCacheDataDontLoad timeoutInterval:11]];
+            // I'd like to expand to a fullscreen image here - suggestions are welcome
             NSLog(@"%@",response);
         }
     }

@@ -32,11 +32,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.01</string>
+	<string>5.02</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1349086485</string>
+	<string>1349086487</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
@@ -62,7 +62,7 @@
 			<string>com.getpocket.sdk</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>pocketappXXXX</string>
+				<string>pocketapp15921</string>
 			</array>
 		</dict>
 	</array>

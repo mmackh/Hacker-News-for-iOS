@@ -8,6 +8,8 @@
 
 #import "MAMWebViewController.h"
 #import "TUSafariActivity.h"
+#import "MAMConstants.h"
+#import "PocketAPIActivity.h"
 
 @interface MAMWebViewController () <UIGestureRecognizerDelegate>
 
@@ -67,7 +69,8 @@
 {
     NSURL *URL = self.webView.request.URL;
     TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity]];
+    PocketAPIActivity *pocketActivity = [[PocketAPIActivity alloc] init];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[activity,pocketActivity]];
     [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
     
     if ([MAMHNController isPad])
