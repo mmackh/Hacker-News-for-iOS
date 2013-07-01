@@ -104,6 +104,11 @@
 		2299529A177449AC00033D6F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 22995299177449AB00033D6F /* Default-Landscape~ipad.png */; };
 		2299529C17744ADC00033D6F /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299529B17744ADC00033D6F /* Default-Landscape@2x~ipad.png */; };
 		2299529E17744AFF00033D6F /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299529D17744AFE00033D6F /* Default-Portrait@2x~ipad.png */; };
+		229C34E31782016D00CC56E1 /* Readability-activity-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 229C34DD1782016D00CC56E1 /* Readability-activity-iPad.png */; };
+		229C34E41782016D00CC56E1 /* Readability-activity-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 229C34DE1782016D00CC56E1 /* Readability-activity-iPad@2x.png */; };
+		229C34E51782016D00CC56E1 /* Readability-activity-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 229C34DF1782016D00CC56E1 /* Readability-activity-iPhone.png */; };
+		229C34E61782016D00CC56E1 /* Readability-activity-iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 229C34E01782016D00CC56E1 /* Readability-activity-iPhone@2x.png */; };
+		229C34E71782016D00CC56E1 /* ReadabilityActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 229C34E21782016D00CC56E1 /* ReadabilityActivity.m */; };
 		22B2650A176DA934001D6656 /* MAMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B26509176DA934001D6656 /* MAMWebViewController.m */; };
 		22B26510176DE7AC001D6656 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B2650F176DE7AC001D6656 /* NSString+Additions.m */; };
 		22B26513176DF4FC001D6656 /* MAMCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B26512176DF4FC001D6656 /* MAMCommentsViewController.m */; };
@@ -245,6 +250,12 @@
 		22995299177449AB00033D6F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		2299529B17744ADC00033D6F /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		2299529D17744AFE00033D6F /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		229C34DD1782016D00CC56E1 /* Readability-activity-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-activity-iPad.png"; sourceTree = "<group>"; };
+		229C34DE1782016D00CC56E1 /* Readability-activity-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-activity-iPad@2x.png"; sourceTree = "<group>"; };
+		229C34DF1782016D00CC56E1 /* Readability-activity-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-activity-iPhone.png"; sourceTree = "<group>"; };
+		229C34E01782016D00CC56E1 /* Readability-activity-iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-activity-iPhone@2x.png"; sourceTree = "<group>"; };
+		229C34E11782016D00CC56E1 /* ReadabilityActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityActivity.h; sourceTree = "<group>"; };
+		229C34E21782016D00CC56E1 /* ReadabilityActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityActivity.m; sourceTree = "<group>"; };
 		22B26508176DA934001D6656 /* MAMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMWebViewController.h; sourceTree = "<group>"; };
 		22B26509176DA934001D6656 /* MAMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMWebViewController.m; sourceTree = "<group>"; };
 		22B2650E176DE7AC001D6656 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -408,9 +419,8 @@
 		223191D7176C5E570006084D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				223246B8178008F700707BCD /* PocketSDK */,
-				226339AD177B85BE00B2270A /* MDSlideNavigationViewController */,
-				229952751773B16500033D6F /* TUSafariActivity */,
+				229C34E81782017900CC56E1 /* UIActivity */,
+				226339AD177B85BE00B2270A /* MAMSlideNavigationViewController */,
 				22CB50BE176F8EE7006DA4AC /* TTAttributedLabel */,
 				22CB50B1176F16E1006DA4AC /* Hpple */,
 				22319215176C6DE30006084D /* RaptureXML */,
@@ -477,13 +487,13 @@
 			name = Interface;
 			sourceTree = "<group>";
 		};
-		226339AD177B85BE00B2270A /* MDSlideNavigationViewController */ = {
+		226339AD177B85BE00B2270A /* MAMSlideNavigationViewController */ = {
 			isa = PBXGroup;
 			children = (
 				226339AA177B85A700B2270A /* MAMSlideNavigationViewController.h */,
 				226339AB177B85A700B2270A /* MAMSlideNavigationViewController.m */,
 			);
-			name = MDSlideNavigationViewController;
+			name = MAMSlideNavigationViewController;
 			sourceTree = "<group>";
 		};
 		226BA88B1772588800FD34B1 /* Home */ = {
@@ -549,6 +559,29 @@
 				2299527B1773B16500033D6F /* TUSafariActivity.m */,
 			);
 			path = TUSafariActivity;
+			sourceTree = "<group>";
+		};
+		229C34DC1782016D00CC56E1 /* ReadabilityActivity */ = {
+			isa = PBXGroup;
+			children = (
+				229C34DD1782016D00CC56E1 /* Readability-activity-iPad.png */,
+				229C34DE1782016D00CC56E1 /* Readability-activity-iPad@2x.png */,
+				229C34DF1782016D00CC56E1 /* Readability-activity-iPhone.png */,
+				229C34E01782016D00CC56E1 /* Readability-activity-iPhone@2x.png */,
+				229C34E11782016D00CC56E1 /* ReadabilityActivity.h */,
+				229C34E21782016D00CC56E1 /* ReadabilityActivity.m */,
+			);
+			path = ReadabilityActivity;
+			sourceTree = "<group>";
+		};
+		229C34E81782017900CC56E1 /* UIActivity */ = {
+			isa = PBXGroup;
+			children = (
+				229C34DC1782016D00CC56E1 /* ReadabilityActivity */,
+				229952751773B16500033D6F /* TUSafariActivity */,
+				223246B8178008F700707BCD /* PocketSDK */,
+			);
+			name = UIActivity;
 			sourceTree = "<group>";
 		};
 		22CB50B1176F16E1006DA4AC /* Hpple */ = {
@@ -727,6 +760,10 @@
 				223246CA178008F700707BCD /* PocketActivity@2x~iphone.png in Resources */,
 				223246CB178008F700707BCD /* PocketActivity~ipad.png in Resources */,
 				223246CC178008F700707BCD /* PocketActivity~iphone.png in Resources */,
+				229C34E31782016D00CC56E1 /* Readability-activity-iPad.png in Resources */,
+				229C34E41782016D00CC56E1 /* Readability-activity-iPad@2x.png in Resources */,
+				229C34E51782016D00CC56E1 /* Readability-activity-iPhone.png in Resources */,
+				229C34E61782016D00CC56E1 /* Readability-activity-iPhone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +808,7 @@
 				223246CF178008F700707BCD /* PocketAPILogin.m in Sources */,
 				223246D0178008F700707BCD /* PocketAPIOperation.m in Sources */,
 				223246D1178008F700707BCD /* SFHFKeychainUtils.m in Sources */,
+				229C34E71782016D00CC56E1 /* ReadabilityActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

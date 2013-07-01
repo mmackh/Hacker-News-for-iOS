@@ -13,8 +13,11 @@
 #import "MAMWebViewController.h"
 #import "NSString+Additions.h"
 #import <QuartzCore/QuartzCore.h>
+
+// UIActivity
 #import "TUSafariActivity.h"
 #import "PocketAPIActivity.h"
+#import "ReadabilityActivity/ReadabilityActivity.h"
 
 typedef NS_ENUM(NSInteger, StoryTransitionType)
 {
@@ -250,9 +253,17 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         case 4:
         {
             NSURL *URL = [NSURL URLWithString:self.story.link];
+            NSMutableArray *activities = [NSMutableArray new];
             TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
+            [activities addObject:safariActivity];
             PocketAPIActivity *pocketActivity = [[PocketAPIActivity alloc] init];
-            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[safariActivity, pocketActivity]];
+            [activities addObject:pocketActivity];
+            if ([ReadabilityActivity canPerformActivity])
+            {
+                ReadabilityActivity *readabilityActivity = [[ReadabilityActivity alloc] init];
+                [activities addObject:readabilityActivity];
+            }
+            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:activities];
             [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
             
             if ([MAMHNController isPad])
