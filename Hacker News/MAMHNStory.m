@@ -13,25 +13,27 @@
 #import "RXMLElement.h"
 
 @implementation MAMHNStory
+{
+    NSString *_subtitle;
+    NSString *_footer;
+}
 
 - (NSString *)subtitle
 {
-    static NSString *subtitle = nil;
-    if (!subtitle)
+    if (!_subtitle)
     {
-        subtitle = [NSString stringWithFormat:@"Submitted %@ by %@",self.pubDate,self.user];
+        _subtitle = [NSString stringWithFormat:@"Submitted %@ by %@",self.pubDate,self.user];
     }
-    return subtitle;
+    return _subtitle;
 }
 
 - (NSString *)footer
 {
-    static NSString *footer = nil;
-    if (!footer)
+    if (!_footer)
     {
-        footer = [NSString stringWithFormat:@"%@ | %@",self.score,self.commentsValue];
+        _footer = [NSString stringWithFormat:@"%@ | %@",self.score,self.commentsValue];
     }
-    return footer;
+    return _footer;
 }
 
 - (NSString *)domain

@@ -14,6 +14,9 @@
 #import "NSString+Additions.h"
 #import <QuartzCore/QuartzCore.h>
 
+//Categories
+#import "UIView+AnchorPoint.h"
+
 // UIActivity
 #import "TUSafariActivity.h"
 #import "PocketAPIActivity.h"
@@ -296,7 +299,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
     }
     [stretchAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [self setAnchorPoint:CGPointMake(0.0, (transitionType==StoryTransitionTypeNext)?1:0) forView:self.view];
+    [self.view setAnchorPoint:CGPointMake(0.0, (transitionType==StoryTransitionTypeNext)?1:0) forView:self.view];
     [self.view.layer addAnimation:stretchAnimation forKey:@"stretchAnimation"];
     if (story == nil) return;
     CATransition *animation = [CATransition animation];
@@ -307,32 +310,6 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [[self.webView layer] addAnimation:animation forKey:nil];
 
     [self setStory:story];
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:self.webView];
-}
-
-//http://stackoverflow.com/a/5666430/1091044
--(void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
-{
-    CGPoint newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y);
-    CGPoint oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y);
-    
-    newPoint = CGPointApplyAffineTransform(newPoint, view.transform);
-    oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform);
-    
-    CGPoint position = view.layer.position;
-    
-    position.x -= oldPoint.x;
-    position.x += newPoint.x;
-    
-    position.y -= oldPoint.y;
-    position.y += newPoint.y;
-    
-    view.layer.position = position;
-    view.layer.anchorPoint = anchorPoint;
 }
 
 @end

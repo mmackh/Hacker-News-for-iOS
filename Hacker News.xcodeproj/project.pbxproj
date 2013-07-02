@@ -118,6 +118,7 @@
 		22CB50BD176F5416006DA4AC /* MAMCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CB50BC176F5416006DA4AC /* MAMCommentTableViewCell.m */; };
 		22CB50D4176FA375006DA4AC /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CB50D3176FA375006DA4AC /* TTTAttributedLabel.m */; };
 		22CB50D6176FA4CC006DA4AC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CB50D5176FA4CC006DA4AC /* CoreText.framework */; };
+		22E8DD5C1782E7F800137E75 /* UIView+AnchorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,6 +274,8 @@
 		22CB50D2176FA375006DA4AC /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		22CB50D3176FA375006DA4AC /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		22CB50D5176FA4CC006DA4AC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		22E8DD5A1782E7F800137E75 /* UIView+AnchorPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnchorPoint.h"; sourceTree = "<group>"; };
+		22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnchorPoint.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +422,7 @@
 		223191D7176C5E570006084D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				22E8DD591782E7D800137E75 /* Helpers */,
 				229C34E81782017900CC56E1 /* UIActivity */,
 				226339AD177B85BE00B2270A /* MAMSlideNavigationViewController */,
 				22CB50BE176F8EE7006DA4AC /* TTAttributedLabel */,
@@ -646,6 +650,15 @@
 			name = Webview;
 			sourceTree = "<group>";
 		};
+		22E8DD591782E7D800137E75 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				22E8DD5A1782E7F800137E75 /* UIView+AnchorPoint.h */,
+				22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -809,6 +822,7 @@
 				223246D0178008F700707BCD /* PocketAPIOperation.m in Sources */,
 				223246D1178008F700707BCD /* SFHFKeychainUtils.m in Sources */,
 				229C34E71782016D00CC56E1 /* ReadabilityActivity.m in Sources */,
+				22E8DD5C1782E7F800137E75 /* UIView+AnchorPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MAMButton.h"
 
+//Categories
+#import "UIView+AnchorPoint.h"
+
 @interface MAMViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,ReaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -172,7 +175,7 @@
     if (_currentSection == 0 && [sender tag] == 0) {
         anchorPointX  = 0;
     }
-    [self setAnchorPoint:CGPointMake(anchorPointX,0.5) forView:self.view];
+    [self.view setAnchorPoint:CGPointMake(anchorPointX,0.5) forView:self.view];
     [self.view.layer addAnimation:stretchAnimation forKey:@"animations"];
     
     if (_currentSection != [sender tag])
@@ -262,34 +265,6 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return NO;
-}
-
-// Clean up, duplicate code
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:self.tableView];
-}
-
-//http://stackoverflow.com/a/5666430/1091044
--(void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
-{
-    CGPoint newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y);
-    CGPoint oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y);
-    
-    newPoint = CGPointApplyAffineTransform(newPoint, view.transform);
-    oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform);
-    
-    CGPoint position = view.layer.position;
-    
-    position.x -= oldPoint.x;
-    position.x += newPoint.x;
-    
-    position.y -= oldPoint.y;
-    position.y += newPoint.y;
-    
-    view.layer.position = position;
-    view.layer.anchorPoint = anchorPoint;
 }
 
 @end
