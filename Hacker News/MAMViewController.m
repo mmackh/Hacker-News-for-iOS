@@ -165,7 +165,7 @@
     [stretchAnimation setFillMode:kCAFillModeRemoved];
     [stretchAnimation setAutoreverses:YES];
     [stretchAnimation setDuration:0.15];
-    
+    [stretchAnimation setDelegate:self];
     if (_currentSection != [sender tag])
     {
         [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.30];
@@ -261,6 +261,14 @@
         }
     }
 }
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.view setAnchorPoint:CGPointMake(0.5, 0.5) forView:self.view];
+}
+
+#pragma mark -
+#pragma mark Gesture Recoginizer
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {

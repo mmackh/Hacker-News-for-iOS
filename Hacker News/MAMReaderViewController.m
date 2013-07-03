@@ -294,6 +294,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [stretchAnimation setFillMode:kCAFillModeRemoved];
     [stretchAnimation setAutoreverses:YES];
     [stretchAnimation setDuration:0.15];
+    [stretchAnimation setDelegate:self];
     if (story != nil)
     {
         [stretchAnimation setBeginTime:CACurrentMediaTime() + 0.35];
@@ -310,6 +311,11 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [[self.webView layer] addAnimation:animation forKey:nil];
 
     [self setStory:story];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.view setAnchorPoint:CGPointMake(0.5, 0.5) forView:self.view];
 }
 
 @end
