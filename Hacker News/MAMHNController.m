@@ -21,12 +21,11 @@
 + (BOOL)isPad
 {
     static BOOL isPad;
-    static int isSet = 0;
-    if (isSet == 0)
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken,^
     {
         isPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
-        isSet = 1;
-    }
+    });
     return isPad;
 }
 
@@ -139,11 +138,10 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        
         NSMutableArray *comments = [NSMutableArray new];
         
-        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:responseObject];
-        NSArray * elements  = [doc searchWithXPathQuery:@"//html/body/center/table/tr[3]/td/table[2]"];
+        TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
+        NSArray *elements = [doc searchWithXPathQuery:@"//html/body/center/table/tr[3]/td/table[2]"];
         if (!elements.count) { completionBlock(nil); return; }
         NSArray *rawElements = [[elements objectAtIndex:0] children];
         for (TFHppleElement *element in rawElements)
@@ -167,7 +165,6 @@
             if (!replyIDQuery.count)continue;
             NSString *replyID = [[replyIDQuery objectAtIndex:0] objectForKey:@"href"];
             
-            
             static const NSString *enter = @"↳ ";
             
             MAMHNComment *newComment = [MAMHNComment new];
@@ -185,11 +182,6 @@
         NSLog(@"%@",error.description);
     }];
     [operation start];
-    
-}
-
-- (void)loopWithObjectContainingPossbileObjects:(id)object completion:(void(^)(id result))block
-{
     
 }
 

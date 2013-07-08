@@ -7,8 +7,8 @@
 
 #import "ReadabilityActivity.h"
 
-NSString * const ReadabilityActivityURI = @"readability://";
-NSString * const ReadabilityActivityAdd = @"add";
+static NSString * const ReadabilityActivityURI = @"readability://";
+static NSString * const ReadabilityActivityAdd = @"add";
 
 @implementation ReadabilityActivity
 
@@ -22,10 +22,8 @@ NSString * const ReadabilityActivityAdd = @"add";
     return @"Readability";
 }
 
-- (UIImage *)activityImage
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
+- (UIImage *)activityImage {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return [UIImage imageNamed:@"Readability-activity-iPad"];
     }
     
@@ -34,6 +32,14 @@ NSString * const ReadabilityActivityAdd = @"add";
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
 {
+    if (![ReadabilityActivity canPerformActivity]) {
+        return NO;
+    }
+    for (NSObject *item in activityItems) {
+        if (![item isKindOfClass:[NSURL class]] && ![item isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+    }
     return YES;
 }
 
@@ -42,28 +48,27 @@ NSString * const ReadabilityActivityAdd = @"add";
     _activityItems = activityItems;
 }
 
-- (void)performActivity
-{
-    if ([ReadabilityActivity canPerformActivity])
-    {
-        NSString *activityAction = _activityItems[0];
-        NSURL *activityURL = _activityItems[1];
+- (void)performActivity {
+    if ([ReadabilityActivity canPerformActivity]){
+        NSString *activityURL = nil;
         
-        NSString *readabilityURLString = [NSString stringWithFormat:@"%@%@/%@", ReadabilityActivityURI, activityAction, [activityURL absoluteString]];
-        NSURL *readabilityURL = [NSURL URLWithString:readabilityURLString];
+        if([_activityItems[0] isKindOfClass:[NSURL class]]) {
+            activityURL = [_activityItems[0] absoluteString];
+            
+        } else {
+            activityURL = _activityItems[0];
+        }
         
-        [[UIApplication sharedApplication] openURL:readabilityURL];
+        NSString *readabilityURLString = [NSString stringWithFormat:@"%@%@/%@", ReadabilityActivityURI, ReadabilityActivityAdd, activityURL];
         
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:readabilityURLString]];
         [self activityDidFinish:YES];
-    }
-    else
-    {
+    } else{
         [self activityDidFinish:NO];
     }
 }
 
-+ (BOOL)canPerformActivity
-{
++ (BOOL)canPerformActivity {
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:ReadabilityActivityURI]])
     {
         return YES;

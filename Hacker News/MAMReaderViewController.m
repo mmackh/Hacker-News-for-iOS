@@ -21,6 +21,7 @@
 #import "TUSafariActivity.h"
 #import "PocketAPIActivity.h"
 #import "ReadabilityActivity/ReadabilityActivity.h"
+#import "MAMInstapaperActivity.h"
 
 typedef NS_ENUM(NSInteger, StoryTransitionType)
 {
@@ -266,6 +267,12 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
                 ReadabilityActivity *readabilityActivity = [[ReadabilityActivity alloc] init];
                 [activities addObject:readabilityActivity];
             }
+            if ([MAMInstapaperActivity canPerformActivity])
+            {
+                MAMInstapaperActivity *instapaperActivity = [[MAMInstapaperActivity alloc] init];
+                [activities addObject:instapaperActivity];
+            }
+            
             UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:activities];
             [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
             
