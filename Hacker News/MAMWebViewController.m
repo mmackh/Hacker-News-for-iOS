@@ -8,10 +8,7 @@
 
 #import "MAMWebViewController.h"
 #import "MAMConstants.h"
-
-#import "TUSafariActivity.h"
-#import "PocketAPIActivity.h"
-#import "ReadabilityActivity/ReadabilityActivity.h"
+#import "MAMSingleton.h"
 
 @interface MAMWebViewController () <UIGestureRecognizerDelegate>
 
@@ -70,18 +67,7 @@
 - (IBAction)safari:(id)sender
 {
     NSURL *URL = self.webView.request.URL;
-    NSMutableArray *activities = [NSMutableArray new];
-    TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
-    [activities addObject:safariActivity];
-    PocketAPIActivity *pocketActivity = [[PocketAPIActivity alloc] init];
-    [activities addObject:pocketActivity];
-    if ([ReadabilityActivity canPerformActivity])
-    {
-        ReadabilityActivity *readabilityActivity = [[ReadabilityActivity alloc] init];
-        [activities addObject:readabilityActivity];
-    }
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:activities];
-    [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToWeibo]];
+    UIActivityViewController *activityViewController = [[MAMSingleton sharedSingleton] activityViewControllerForURL:URL];
     
     if ([MAMHNController isPad])
     {

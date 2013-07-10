@@ -17,6 +17,9 @@
 //Categories
 #import "UIView+AnchorPoint.h"
 
+//ActivityVC
+#import "MAMSingleton.h"
+
 @interface MAMViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,ReaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -38,11 +41,19 @@
     NSArray *_items;
     int _selectedRow;
     int _currentSection;
+    
+    //iPad Specifics
+    UIPopoverController *_popoverController;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [longPress setMinimumPressDuration:0.5];
+    [longPress setDelegate:self];
+    [self.tableView addGestureRecognizer:longPress];
     
     _hnController = [MAMHNController sharedController];
     _items = [_hnController loadStoriesFromCacheOfType:HNControllerStoryTypeTrending];
@@ -60,6 +71,28 @@
     
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath) {        
+            NSURL *URL = [NSURL URLWithString:[_items[indexPath.row] link]];
+            UIActivityViewController *activityViewController = [[MAMSingleton sharedSingleton] activityViewControllerForURL:URL];
+            
+            if ([MAMHNController isPad])
+            {
+                _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+                [_popoverController presentPopoverFromRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+            else
+            {
+                [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+            }
+        }
+    }
 }
 
 - (void)dealloc
