@@ -134,7 +134,7 @@
         if ([MAMHNController isPad])
         {
             _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-            [_popoverController presentPopoverFromRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [_popoverController presentPopoverFromRect:[self.tableView convertRect:[self.tableView rectForRowAtIndexPath:indexPath] toView:[self.tableView superview]] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown animated:YES];
         }
         else
         {
