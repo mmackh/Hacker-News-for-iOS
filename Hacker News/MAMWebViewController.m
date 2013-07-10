@@ -8,7 +8,8 @@
 
 #import "MAMWebViewController.h"
 #import "MAMConstants.h"
-#import "MAMSingleton.h"
+
+#import "MAMActivityViewController.h"
 
 @interface MAMWebViewController () <UIGestureRecognizerDelegate>
 
@@ -67,7 +68,7 @@
 - (IBAction)safari:(id)sender
 {
     NSURL *URL = self.webView.request.URL;
-    UIActivityViewController *activityViewController = [[MAMSingleton sharedSingleton] activityViewControllerForURL:URL];
+    UIActivityViewController *activityViewController = [MAMActivityViewController controllerForURL:URL];
     
     if ([MAMHNController isPad])
     {

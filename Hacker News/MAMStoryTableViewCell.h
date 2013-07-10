@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class MAMStoryTableViewCell;
+
+@protocol MAMStoryTableViewCellDelegate <NSObject>
+
+@optional
+- (void)tableViewDidRecognizeLongPressGestureWithCell:(MAMStoryTableViewCell *)cell;
+@end
+
 @interface MAMStoryTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) id<MAMStoryTableViewCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *subtitle;

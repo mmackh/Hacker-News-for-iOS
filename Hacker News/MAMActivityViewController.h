@@ -1,5 +1,5 @@
 //
-//  MAMSingleton.h
+//  MAMActivityViewController.h
 //  Hacker News
 //
 //  Created by Zach Orr on 7/9/13.
@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MAMSingleton : NSObject
+@interface MAMActivityViewController : NSObject
 
-+ (MAMSingleton*)sharedSingleton;
-- (UIActivityViewController*)activityViewControllerForURL:(NSURL*)URL;
++ (UIActivityViewController*)controllerForURL:(NSURL*)URL;
 
 @end

@@ -18,7 +18,7 @@
 #import "UIView+AnchorPoint.h"
 
 // UIActivity
-#import "MAMSingleton.h"
+#import "MAMActivityViewController.h"
 
 typedef NS_ENUM(NSInteger, StoryTransitionType)
 {
@@ -254,8 +254,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         case 4:
         {
             NSURL *URL = [NSURL URLWithString:self.story.link];
-            UIActivityViewController *activityViewController = [[MAMSingleton sharedSingleton] activityViewControllerForURL:URL];
-            
+            UIActivityViewController *activityViewController = [MAMActivityViewController controllerForURL:URL];
             if ([MAMHNController isPad])
             {
                 _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];

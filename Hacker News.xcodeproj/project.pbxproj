@@ -63,6 +63,7 @@
 		2258AD3D178B5F4C005B9E8D /* instapaper-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2258AD39178B5F4B005B9E8D /* instapaper-ipad@2x.png */; };
 		2258AD3E178B5F4C005B9E8D /* instapaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 2258AD3A178B5F4B005B9E8D /* instapaper.png */; };
 		2258AD3F178B5F4C005B9E8D /* instapaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2258AD3B178B5F4C005B9E8D /* instapaper@2x.png */; };
+		2258AD45178D3E17005B9E8D /* MAMActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2258AD44178D3E17005B9E8D /* MAMActivityViewController.m */; };
 		2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */; };
 		2261F732176CE2E300CB2213 /* view.html in Resources */ = {isa = PBXBuildFile; fileRef = 2261F731176CE2E300CB2213 /* view.html */; };
 		226339AC177B85A700B2270A /* MAMSlideNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226339AB177B85A700B2270A /* MAMSlideNavigationViewController.m */; };
@@ -212,6 +213,8 @@
 		2258AD39178B5F4B005B9E8D /* instapaper-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instapaper-ipad@2x.png"; sourceTree = "<group>"; };
 		2258AD3A178B5F4B005B9E8D /* instapaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instapaper.png; sourceTree = "<group>"; };
 		2258AD3B178B5F4C005B9E8D /* instapaper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instapaper@2x.png"; sourceTree = "<group>"; };
+		2258AD43178D3E17005B9E8D /* MAMActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMActivityViewController.h; sourceTree = "<group>"; };
+		2258AD44178D3E17005B9E8D /* MAMActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMActivityViewController.m; sourceTree = "<group>"; };
 		2261F72E176CDF1500CB2213 /* MAMReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMReaderViewController.h; sourceTree = "<group>"; };
 		2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMReaderViewController.m; sourceTree = "<group>"; };
 		2261F731176CE2E300CB2213 /* view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = view.html; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 		229C34E81782017900CC56E1 /* UIActivity */ = {
 			isa = PBXGroup;
 			children = (
+				2258AD43178D3E17005B9E8D /* MAMActivityViewController.h */,
+				2258AD44178D3E17005B9E8D /* MAMActivityViewController.m */,
 				2258AD34178B5CC9005B9E8D /* InstapaperActivity */,
 				229C34DC1782016D00CC56E1 /* ReadabilityActivity */,
 				229952751773B16500033D6F /* TUSafariActivity */,
@@ -853,6 +858,7 @@
 				229C34E71782016D00CC56E1 /* ReadabilityActivity.m in Sources */,
 				22E8DD5C1782E7F800137E75 /* UIView+AnchorPoint.m in Sources */,
 				2258AD37178B5CF0005B9E8D /* MAMInstapaperActivity.m in Sources */,
+				2258AD45178D3E17005B9E8D /* MAMActivityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

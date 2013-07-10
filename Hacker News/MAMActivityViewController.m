@@ -1,29 +1,23 @@
 //
-//  MAMSingleton.m
+//  MAMActivityViewController.m
 //  Hacker News
 //
 //  Created by Zach Orr on 7/9/13.
 //  Copyright (c) 2013 Maximilian Mackh. All rights reserved.
 //
 
-#import "MAMSingleton.h"
+#import "MAMActivityViewController.h"
+
+// UIActivities
 #import "PocketAPIActivity.h"
 #import "ReadabilityActivity.h"
 #import "MAMInstapaperActivity.h"
 #import "TUSafariActivity.h"
 
-@implementation MAMSingleton
+@implementation MAMActivityViewController
 
-+(MAMSingleton*)sharedSingleton {
-    static dispatch_once_t _singletonPredicate;
-    static MAMSingleton *singleton = nil;
-    dispatch_once(&_singletonPredicate, ^{
-        singleton = [[super allocWithZone:nil] init];
-    });
-    return singleton;
-}
-
-- (UIActivityViewController*)activityViewControllerForURL:(NSURL*)URL {
++ (UIActivityViewController*)controllerForURL:(NSURL*)URL
+{
     NSMutableArray *activities = [NSMutableArray new];
     TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
     [activities addObject:safariActivity];
