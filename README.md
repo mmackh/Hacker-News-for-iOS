@@ -16,6 +16,7 @@ Philosophy
 Support
 ------
 You can always compile your own version for for free, but consider supporting development through a purchase of a copy in the App Store: [https://itunes.apple.com/us/app/hacker-news/id514166419?ls=1&mt=8](https://itunes.apple.com/us/app/hacker-news/id514166419?ls=1&mt=8)
+Leave feedback & follow me on twitter [@mmackh](https://twitter.com/mmackh) or open an issue in this repo.
 
 Todo
 ------
