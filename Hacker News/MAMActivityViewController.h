@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MAMActivityViewController : NSObject
+@interface MAMActivityViewController : UIActivityViewController
 
 + (UIActivityViewController*)controllerForURL:(NSURL*)URL;
 
