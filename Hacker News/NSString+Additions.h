@@ -13,6 +13,7 @@
 - (NSString *)urlFriendlyFileNameWithExtension:(NSString *)extension prefixID:(int)prefixID;
 - (NSString *)urlFriendlyFileName;
 - (NSString *)stringByAppendingURLPathComponent:(NSString *)pathComponent;
+- (NSString *)stringByDeletingLastURLPathComponent;
 
 - (NSString *)sha512;
 - (NSString *)base64Encode;
@@ -22,5 +23,20 @@
 
 - (NSString *)stringByStrippingHTML;
 - (NSString *)localCachePath;
+
+- (NSString *)trim;
+- (BOOL)isNumeric;
+- (BOOL)containsString:(NSString *)needle;
+
+__attribute__((overloadable))
+NSString *substr(NSString *str, int start);
+__attribute__((overloadable))
+NSString *substr(NSString *str, int start, int length);
+
+@end
+
+@interface NSObject (isEmpty)
+
+- (BOOL)mag_isEmpty;
 
 @end

@@ -34,8 +34,18 @@ static const short _base64DecodingTable[256] = {
 - (NSString *)urlFriendlyFileNameWithExtension:(NSString *)extension prefixID:(int)prefixID
 {
     if (self.length == 0) return @"";
-    NSCharacterSet *charactersToRemove = [[ NSCharacterSet alphanumericCharacterSet ] invertedSet ];
-    NSString *cleanTitle = [[self componentsSeparatedByCharactersInSet:charactersToRemove] componentsJoinedByString:@"_"];
+    
+    NSString *umlaut = [self stringByReplacingOccurrencesOfString:@"ß" withString:@"ss"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"ä" withString:@"ae"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"ö" withString:@"oe"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"ü" withString:@"ue"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"Ä" withString:@"Ae"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"Ö" withString:@"Oe"];
+    umlaut = [umlaut stringByReplacingOccurrencesOfString:@"Ü" withString:@"Ue"];
+    
+    NSMutableCharacterSet *charactersToRemove = [[[ NSCharacterSet alphanumericCharacterSet ] invertedSet ] mutableCopy];
+    [charactersToRemove removeCharactersInString:@"-+"];
+    NSString *cleanTitle = [[umlaut componentsSeparatedByCharactersInSet:charactersToRemove] componentsJoinedByString:@"_"];
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"__+" options:NSRegularExpressionCaseInsensitive error:nil];
     cleanTitle = [regex stringByReplacingMatchesInString:cleanTitle options:0 range:NSMakeRange(0, [cleanTitle length]) withTemplate:@"_"];
@@ -47,7 +57,7 @@ static const short _base64DecodingTable[256] = {
     
     if (!prefixID)
     {
-        return [[cleanTitle lowercaseString] stringByAppendingPathExtension:extension];
+        return [cleanTitle stringByAppendingPathExtension:extension];
     }
     
     return [[[NSString stringWithFormat:@"%i-%@",prefixID, cleanTitle] lowercaseString] stringByAppendingPathExtension:extension];
@@ -64,6 +74,13 @@ static const short _base64DecodingTable[256] = {
     NSString *protocol = ([self hasPrefix:@"https://"]) ? @"https://" : @"http://";
     NSString *cleanedStr = [self stringByReplacingOccurrencesOfString:protocol withString:@""];
     return [NSString stringWithFormat:@"%@%@",protocol, [cleanedStr stringByAppendingPathComponent:pathComponent]];
+}
+
+- (NSString *)stringByDeletingLastURLPathComponent
+{
+    NSString *protocol = ([self hasPrefix:@"https://"]) ? @"https://" : @"http://";
+    NSString *cleanedStr = [self stringByReplacingOccurrencesOfString:protocol withString:@""];
+    return [NSString stringWithFormat:@"%@%@",protocol, [cleanedStr stringByDeletingLastPathComponent]];
 }
 
 - (NSString *)sha512
@@ -234,7 +251,84 @@ static const short _base64DecodingTable[256] = {
 {
     NSString *filename = [self sha512];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    return [NSString stringWithFormat:@"%@/hnstry-%@.html",[paths objectAtIndex:0],filename];
+    return [NSString stringWithFormat:@"%@/%@.%@",[paths objectAtIndex:0],filename,self.pathExtension];
 }
 
+- (NSString *)trim
+{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (BOOL)isNumeric
+{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
+- (BOOL)containsString:(NSString *)needle
+{
+    if (!self.length) return NO;
+    return ([self rangeOfString:needle].location == NSNotFound) ? NO : YES;
+}
+
+__attribute__((overloadable))
+NSString *substr(NSString *str, int start)
+{
+    return substr(str, start, 0);
+}
+
+__attribute__((overloadable))
+NSString *substr(NSString *str, int start, int length)
+{
+    NSInteger str_len = str.length;
+    if (!str_len) return @"";
+    if (str_len < length) return str;
+    if (start < 0 && length == 0)
+    {
+        return [str substringFromIndex:str_len+start];
+    }
+    if (start == 0 && length > 0)
+    {
+        return [str substringToIndex:length];
+    }
+    if (start < 0 && length > 0)
+    {
+        return [[str substringFromIndex:str_len+start] substringToIndex:length];
+    }
+    if (start > 0 && length > 0)
+    {
+        return [[str substringFromIndex:start] substringToIndex:length];
+    }
+    if (start > 0 && length == 0)
+    {
+        return [str substringFromIndex:start];
+    }
+    if (length < 0)
+    {
+        NSString *tmp_str;
+        if (start < 0)
+        {
+            tmp_str = [str substringFromIndex:str_len+start];
+        }
+        else
+        {
+            tmp_str = [str substringFromIndex:start];
+        }
+        NSInteger tmp_str_len = tmp_str.length;
+        if (tmp_str_len + length <= 0) return @"";
+        return [tmp_str substringToIndex:tmp_str_len+length];
+    }
+    
+    return str;
+}
+
+@end
+
+@implementation NSObject (isEmpty)
+
+- (BOOL)mag_isEmpty
+{
+    return self == nil || ([self respondsToSelector:@selector(length)] && [(NSData *)self length] == 0) || ([self respondsToSelector:@selector(count)] && [(NSArray *)self count] == 0);
+}
 @end
