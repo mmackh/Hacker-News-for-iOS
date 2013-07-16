@@ -130,6 +130,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [string replaceOccurrencesOfString:@"**[points]**" withString:_story.score options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[domain]**" withString:_story.domain options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[link]**" withString:_story.link options:0 range:NSMakeRange(0, string.length)];
+    [string replaceOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize] options:0 range:NSMakeRange(0, string.length)];
     
     _string = string;
     [self.webView loadHTMLString:string baseURL:nil];
@@ -138,13 +139,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
      {
          NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:storyLink] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20]];
-         double delayInSeconds = .2;
-         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-         dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
-         {
-             [weakSelf changeFontSize:FontSizeChangeTypeNone];
-         });
+         [weakSelf.webView loadHTMLString:clearReadDocument baseURL:nil];
      }];
 }
 
