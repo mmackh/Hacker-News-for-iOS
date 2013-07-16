@@ -133,8 +133,10 @@
         UIActivityViewController *activityViewController = [MAMActivityViewController controllerForURL:URL];
         if ([MAMHNController isPad])
         {
+            CGRect cellFrame = [self.tableView convertRect:[self.tableView rectForRowAtIndexPath:indexPath] toView:[self.tableView superview]];
+            cellFrame.size.height = cell.frame.size.height/2;
             _popoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-            [_popoverController presentPopoverFromRect:[self.tableView convertRect:[self.tableView rectForRowAtIndexPath:indexPath] toView:[self.tableView superview]] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown animated:YES];
+            [_popoverController presentPopoverFromRect:cellFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp|UIPopoverArrowDirectionDown animated:YES];
         }
         else
         {
