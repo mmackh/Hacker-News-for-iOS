@@ -135,8 +135,9 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     _string = string;
     [self.webView loadHTMLString:string baseURL:nil];
     __weak MAMReaderViewController *weakSelf = self;
-    [_story loadClearReadLoadBody:^(NSString *resultBody)
+    [_story loadClearReadLoadBody:^(NSString *resultBody, MAMHNStory *story)
      {
+         if (story != _story) return;
          NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
          [weakSelf.webView loadHTMLString:clearReadDocument baseURL:nil];

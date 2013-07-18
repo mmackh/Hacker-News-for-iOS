@@ -41,10 +41,10 @@
     return [[NSURL URLWithString:self.link] host];
 }
 
-- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody))completionBlock
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story))completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api.thequeue.org/v1/clear?url=%@",self.link];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:15];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
@@ -52,7 +52,7 @@
         RXMLElement *rootXML = [RXMLElement elementFromXMLString:responseString encoding:NSUTF8StringEncoding];
         [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
         {
-            completionBlock(e.text);
+            completionBlock(e.text,self);
         }];
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
