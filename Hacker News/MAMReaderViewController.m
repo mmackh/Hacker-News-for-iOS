@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     if ([[NSFileManager defaultManager] fileExistsAtPath:storyLink])
     {
         NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:storyLink] encoding:NSUTF8StringEncoding error:nil];
-        htmlString = [htmlString stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize]];
+        htmlString = [htmlString stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i%%",_currentFontSize]];
         [self.webView loadHTMLString:htmlString baseURL:nil];
         return;
     }
@@ -130,7 +130,8 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [string replaceOccurrencesOfString:@"**[points]**" withString:_story.score options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[domain]**" withString:_story.domain options:0 range:NSMakeRange(0, string.length)];
     [string replaceOccurrencesOfString:@"**[link]**" withString:_story.link options:0 range:NSMakeRange(0, string.length)];
-    [string replaceOccurrencesOfString:@"**[txtadjust]**" withString:[NSString stringWithFormat:@"%i",_currentFontSize] options:0 range:NSMakeRange(0, string.length)];
+    NSString *targetFontSize = [NSString stringWithFormat:@"%i.000001%%",_currentFontSize];
+    [string replaceOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize options:0 range:NSMakeRange(0, string.length)];
     
     _string = string;
     [self.webView loadHTMLString:string baseURL:nil];
@@ -138,10 +139,11 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     [_story loadClearReadLoadBody:^(NSString *resultBody, MAMHNStory *story)
      {
          if (story != _story) return;
+         [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
          NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
          [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         [weakSelf.webView loadHTMLString:clearReadDocument baseURL:nil];
-     }];
+         [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
+     }]; 
 }
 
 - (MAMHNStory *)story
@@ -171,7 +173,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
         [[NSUserDefaults standardUserDefaults] setInteger:_currentFontSize forKey:@"ftsz"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
+    NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%i%%'",
                           _currentFontSize];
     [self.webView stringByEvaluatingJavaScriptFromString:jsString];
 }
