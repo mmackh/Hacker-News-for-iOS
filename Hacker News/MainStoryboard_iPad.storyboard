@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="mYO-Zq-dBC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A524d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="mYO-Zq-dBC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -262,13 +262,15 @@
                                     <outletCollection property="gestureRecognizers" destination="JNp-DW-H3a" appends="YES" id="Mql-pj-onc"/>
                                     <outletCollection property="gestureRecognizers" destination="jB7-fc-Vjh" appends="YES" id="tkn-ip-5WF"/>
                                     <outletCollection property="gestureRecognizers" destination="pCO-3V-Jd6" appends="YES" id="aGa-mg-WZe"/>
+                                    <outletCollection property="gestureRecognizers" destination="kS5-7Q-PCK" appends="YES" id="bMW-YA-Tay"/>
                                 </connections>
                             </webView>
-                            <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOy-Sq-aDH">
+                            <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOy-Sq-aDH" userLabel="Top Bar">
                                 <subviews>
                                     <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvZ-1q-bWh">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="S20-kW-Mea"/>
+                                            <constraint firstAttribute="height" constant="1" id="Vnr-WI-Jmf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="back.png">
@@ -346,9 +348,15 @@
                                             <action selector="tabButtonTapped:" destination="FXs-js-qrL" eventType="touchUpInside" id="cPL-ck-JNb"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleAspectFit" image="line_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="2yN-rL-8Mj">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="7" type="user" id="8Ka-d2-diC"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
+                                    <constraint firstItem="2yN-rL-8Mj" firstAttribute="leading" secondItem="MOy-Sq-aDH" secondAttribute="leading" type="default" id="16E-XR-eZX"/>
                                     <constraint firstItem="72R-bm-xJ2" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="5bM-sf-Sm3"/>
                                     <constraint firstItem="72R-bm-xJ2" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="user" id="6jS-JL-1ld"/>
                                     <constraint firstAttribute="height" constant="44" type="user" id="9N0-1I-kRz"/>
@@ -359,38 +367,37 @@
                                     <constraint firstItem="uVC-2H-wWm" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="JLE-IC-Vhs"/>
                                     <constraint firstItem="htR-da-ZSP" firstAttribute="trailing" secondItem="MOy-Sq-aDH" secondAttribute="trailing" type="default" id="Jc5-kY-SB9"/>
                                     <constraint firstItem="cSc-pm-Emx" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="KgS-Oe-Y5Z"/>
+                                    <constraint firstItem="2yN-rL-8Mj" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" constant="44" type="user" id="TIq-af-qdT"/>
                                     <constraint firstItem="cSc-pm-Emx" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="bzv-bQ-bUV"/>
                                     <constraint firstItem="72R-bm-xJ2" firstAttribute="leading" secondItem="uVC-2H-wWm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="dpq-Rn-Kqe"/>
+                                    <constraint firstItem="2yN-rL-8Mj" firstAttribute="trailing" secondItem="MOy-Sq-aDH" secondAttribute="trailing" type="default" id="htx-eX-mRW"/>
                                     <constraint firstItem="uVC-2H-wWm" firstAttribute="leading" secondItem="RvZ-1q-bWh" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="jm2-bE-Zin"/>
-                                    <constraint firstItem="RvZ-1q-bWh" firstAttribute="top" secondItem="MOy-Sq-aDH" secondAttribute="top" type="default" id="lBl-TA-i2M"/>
-                                    <constraint firstItem="RvZ-1q-bWh" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="n8N-wz-bL2"/>
+                                    <constraint firstItem="RvZ-1q-bWh" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="user" id="n8N-wz-bL2"/>
                                     <constraint firstItem="htR-da-ZSP" firstAttribute="bottom" secondItem="MOy-Sq-aDH" secondAttribute="bottom" type="default" id="nhp-HL-59l"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleAspectFit" image="line_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="2yN-rL-8Mj"/>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="background_page.png" translatesAutoresizingMaskIntoConstraints="NO" id="hr9-rv-D47"/>
                         </subviews>
                         <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="default" id="4He-z4-AvR"/>
                             <constraint firstItem="hr9-rv-D47" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="default" id="5zb-JO-cBy"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" type="user" id="6sX-aJ-9G8"/>
                             <constraint firstItem="hr9-rv-D47" firstAttribute="bottom" secondItem="GY4-lm-rgQ" secondAttribute="bottom" type="default" id="9Yy-Te-Mci"/>
                             <constraint firstItem="hr9-rv-D47" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="user" id="ADK-XZ-1kT"/>
-                            <constraint firstItem="2yN-rL-8Mj" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="default" id="Ck5-Td-3JZ"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="user" id="Ibd-9s-6d9"/>
                             <constraint firstItem="MOy-Sq-aDH" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="default" id="SPx-59-p3x"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="bottom" secondItem="GY4-lm-rgQ" secondAttribute="bottom" type="default" id="T0t-By-3Au"/>
                             <constraint firstItem="hr9-rv-D47" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="user" id="Vhh-i1-iaa"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="default" id="XI9-yB-o76"/>
-                            <constraint firstItem="2yN-rL-8Mj" firstAttribute="top" secondItem="GY4-lm-rgQ" secondAttribute="top" constant="43" type="user" id="d3z-RZ-R6r"/>
                             <constraint firstItem="2Uh-Ih-uGv" firstAttribute="trailing" secondItem="GY4-lm-rgQ" secondAttribute="trailing" type="default" id="y0V-yi-yDA"/>
-                            <constraint firstItem="2yN-rL-8Mj" firstAttribute="leading" secondItem="GY4-lm-rgQ" secondAttribute="leading" type="default" id="ydH-sG-4Jr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rwR-gk-YLZ"/>
                     <connections>
                         <outlet property="shareButton" destination="htR-da-ZSP" id="JqP-3P-oMK"/>
+                        <outlet property="topBar" destination="MOy-Sq-aDH" id="MO0-0l-zgF"/>
                         <outlet property="webView" destination="2Uh-Ih-uGv" id="3T8-Ei-Xzg"/>
                         <segue destination="gCb-IK-kFQ" kind="modal" identifier="toWeb" id="nbW-XS-bkA"/>
                     </connections>
@@ -414,6 +421,12 @@
                         <outlet property="delegate" destination="FXs-js-qrL" id="9j2-wC-6e0"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="kS5-7Q-PCK">
+                    <connections>
+                        <action selector="tapGesture:" destination="FXs-js-qrL" id="D7g-Z3-aIS"/>
+                        <outlet property="delegate" destination="FXs-js-qrL" id="5C2-qe-qaY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1715" y="44"/>
         </scene>
@@ -770,6 +783,8 @@
         <class className="MAMCommentsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMCommentsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="headerTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
@@ -779,6 +794,7 @@
             <relationships>
                 <relationship kind="action" name="tabButtonTapped:"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="topBar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
@@ -798,7 +814,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changeSection:"/>
-                <relationship kind="action" name="refresh:"/>
                 <relationship kind="action" name="swipe:"/>
                 <relationship kind="outlet" name="bestButton" candidateClass="MAMButton"/>
                 <relationship kind="outlet" name="latestButton" candidateClass="MAMButton"/>
@@ -810,11 +825,6 @@
         <class className="MAMWebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMWebViewController.h"/>
             <relationships>
-                <relationship kind="action" name="back:"/>
-                <relationship kind="action" name="dismiss:"/>
-                <relationship kind="action" name="forward:"/>
-                <relationship kind="action" name="safari:"/>
-                <relationship kind="action" name="twoSwipeDetected:"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
@@ -835,6 +845,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5ue-mo-gvD"/>
+        <segue reference="nbW-XS-bkA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)tabButtonTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *topBar;
 
 // iPad Only
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
@@ -96,7 +97,27 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 }
 
 #pragma mark -
-#pragma mark Navigation
+#pragma mark Gesture Recognizers
+
+- (IBAction)tapGesture:(id)sender
+{
+    if([(UITapGestureRecognizer *)sender state] == UIGestureRecognizerStateRecognized)
+    {
+        [UIView animateWithDuration:0.3 animations:^
+         {
+             BOOL show = (self.topBar.alpha == 0.0);
+             [self.topBar setAlpha:(show)?0.9:0.0];
+             
+             UIEdgeInsets edgeInsets = UIEdgeInsetsMake(([MAMHNController isPad])?44:0, 0, ([MAMHNController isPad])?0:44, 0);
+             if (!show)
+             {
+                 edgeInsets = UIEdgeInsetsZero;
+             }
+             [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
+             [self.webView.scrollView setContentInset:edgeInsets];
+         }];
+    }
+}
 
 - (IBAction)back:(id)sender
 {
@@ -301,5 +322,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 {
     [self.view setAnchorPoint:CGPointMake(0.5, 0.5) forView:self.view];
 }
+
+
 
 @end
