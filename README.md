@@ -48,7 +48,6 @@ License
 The following artwork is licensed under Attribution-NonCommercial-ShareAlike 3.0:
 - icon.psd
 - icon.png
-- icon57.png
 - 57.png
 - 72.png
 - 114.png
@@ -59,6 +58,8 @@ The following artwork is licensed under Attribution-NonCommercial-ShareAlike 3.0
 - Default-Portrait@2x~ipad.png
 - Default-Landscape~ipad.png
 - Default-Landscape@2x~ipad.png
+
+``````````````````````````````
 
 Code in this repository is licensed under the standard MIT license. Any third party code that appears in this repository is licensed under the terms the original author laid out and does not transfer to my licensure. 
 
