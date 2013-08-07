@@ -37,6 +37,7 @@ Attribution
 - [RaptureXML](https://github.com/ZaBlanc/RaptureXML)
 - [TTTAttributedLabel](https://github.com/mattt/TTTAttributedLabel)
 - [TUSafariActivity](https://github.com/davbeck/TUSafariActivity)
+- [KGStatusBar](https://github.com/kevingibbon/KGStatusBar)
 
 Disclaimer
 ----

@@ -124,6 +124,7 @@
 		22CB50BD176F5416006DA4AC /* MAMCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CB50BC176F5416006DA4AC /* MAMCommentTableViewCell.m */; };
 		22CB50D4176FA375006DA4AC /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CB50D3176FA375006DA4AC /* TTTAttributedLabel.m */; };
 		22CB50D6176FA4CC006DA4AC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CB50D5176FA4CC006DA4AC /* CoreText.framework */; };
+		22E06C3B17B2E9B0003655B4 /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E06C3A17B2E9B0003655B4 /* KGStatusBar.m */; };
 		22E8DD5C1782E7F800137E75 /* UIView+AnchorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -288,6 +289,8 @@
 		22CB50D2176FA375006DA4AC /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		22CB50D3176FA375006DA4AC /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		22CB50D5176FA4CC006DA4AC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		22E06C3917B2E9B0003655B4 /* KGStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGStatusBar.h; sourceTree = "<group>"; };
+		22E06C3A17B2E9B0003655B4 /* KGStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGStatusBar.m; sourceTree = "<group>"; };
 		22E8DD5A1782E7F800137E75 /* UIView+AnchorPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnchorPoint.h"; sourceTree = "<group>"; };
 		22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnchorPoint.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -436,6 +439,7 @@
 		223191D7176C5E570006084D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				22E06C3817B2E9B0003655B4 /* KGStatusBar */,
 				229C34E81782017900CC56E1 /* UIActivity */,
 				226339AD177B85BE00B2270A /* MAMSlideNavigationViewController */,
 				22CB50BE176F8EE7006DA4AC /* TTAttributedLabel */,
@@ -680,6 +684,15 @@
 			name = Webview;
 			sourceTree = "<group>";
 		};
+		22E06C3817B2E9B0003655B4 /* KGStatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				22E06C3917B2E9B0003655B4 /* KGStatusBar.h */,
+				22E06C3A17B2E9B0003655B4 /* KGStatusBar.m */,
+			);
+			path = KGStatusBar;
+			sourceTree = "<group>";
+		};
 		22E8DD591782E7D800137E75 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,6 +872,7 @@
 				22E8DD5C1782E7F800137E75 /* UIView+AnchorPoint.m in Sources */,
 				2258AD37178B5CF0005B9E8D /* MAMInstapaperActivity.m in Sources */,
 				2258AD45178D3E17005B9E8D /* MAMActivityViewController.m in Sources */,
+				22E06C3B17B2E9B0003655B4 /* KGStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

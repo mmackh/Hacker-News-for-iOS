@@ -764,9 +764,7 @@
         <class className="MAMReaderViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAMReaderViewController.h"/>
             <relationships>
-                <relationship kind="action" name="fontSizePinch:"/>
                 <relationship kind="action" name="tabButtonTapped:"/>
-                <relationship kind="action" name="tapGesture:"/>
                 <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="topBar" candidateClass="UIView"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>

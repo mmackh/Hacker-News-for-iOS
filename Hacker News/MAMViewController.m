@@ -13,6 +13,7 @@
 #import "MAMReaderViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MAMButton.h"
+#import "KGStatusBar.h"
 
 //Categories
 #import "UIView+AnchorPoint.h"
@@ -163,8 +164,11 @@
     {
         if (!success)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+            [KGStatusBar showWithStatus:@"Connection to server failed" duration:2];
+            if ([sender isKindOfClass:[UIRefreshControl class]])
+            {
+                [(UIRefreshControl *)sender endRefreshing];
+            }
             return;
         }
         
@@ -252,8 +256,7 @@
      {
          if (!success)
          {
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Connection to server failed. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             [alert show];
+             [KGStatusBar showWithStatus:@"Connection to server failed"];
              return;
          }
          if (type != _currentSection) return;
