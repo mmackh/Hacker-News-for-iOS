@@ -174,7 +174,6 @@
         
         _items = results;
         [weakSelf.tableView reloadData];
-        [weakSelf.tableView setContentOffset:CGPointZero animated:YES];
         if ([sender isKindOfClass:[UIRefreshControl class]])
         {
             UIRefreshControl *refreshControl = sender;
