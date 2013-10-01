@@ -10,6 +10,10 @@
 #import "PocketAPI.h"
 #import "MAMConstants.h"
 
+@interface MAMAppDelegate ()
+
+@end
+
 @implementation MAMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -21,6 +25,7 @@
     
     NSString *pocketConsumerKey = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? kPocketConsumerKeyiPad : kPocketConsumerKeyiPhone;
     [[PocketAPI sharedAPI] setConsumerKey:pocketConsumerKey];
+    
     return YES;
 }
 

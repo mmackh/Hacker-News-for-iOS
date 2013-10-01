@@ -26,6 +26,12 @@
     NSArray *_comments;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    if ([MAMHNController isPad]) return YES;
+    return NO;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

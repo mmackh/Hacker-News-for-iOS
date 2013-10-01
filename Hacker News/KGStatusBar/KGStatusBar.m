@@ -32,7 +32,7 @@
 }
 
 + (void)showWithStatus:(NSString*)status {
-    [[KGStatusBar sharedView] showWithStatus:status barColor:[UIColor blackColor] textColor:[UIColor colorWithRed:191.0/255.0 green:191.0/255.0 blue:191.0/255.0 alpha:1.0]];
+    [[KGStatusBar sharedView] showWithStatus:status barColor:[UIColor colorWithRed:0.94f green:0.94f blue:0.94f alpha:1.00f] textColor:[UIColor darkTextColor]];
 }
 
 + (void)showErrorWithStatus:(NSString*)status {
@@ -57,7 +57,9 @@
 
 - (void)showWithStatus:(NSString *)status barColor:(UIColor*)barColor textColor:(UIColor*)textColor{
     if(!self.superview)
+    {
         [self.overlayWindow addSubview:self];
+    }
     [self.overlayWindow setHidden:NO];
     [self.topBar setHidden:NO];
     self.topBar.backgroundColor = barColor;
@@ -66,11 +68,9 @@
     CGFloat stringWidth = 0;
     CGFloat stringHeight = 0;
     if(labelText) {
-        CGSize stringSize = [labelText sizeWithFont:self.stringLabel.font constrainedToSize:CGSizeMake(self.topBar.frame.size.width, self.topBar.frame.size.height)];
-        stringWidth = stringSize.width;
-        stringHeight = stringSize.height;
-        
-        labelRect = CGRectMake((self.topBar.frame.size.width / 2) - (stringWidth / 2), 0, stringWidth, stringHeight);
+        stringWidth = [labelText boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.topBar.frame), CGRectGetHeight(self.topBar.frame)) options:NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:self.stringLabel.font} context:nil].size.width;
+        stringHeight = 20;
+        labelRect = CGRectMake(CGRectGetMidX(self.topBar.frame) - (stringWidth / 2), 0, stringWidth, stringHeight);
     }
     self.stringLabel.frame = labelRect;
     self.stringLabel.alpha = 0.0;
@@ -132,13 +132,9 @@
 		stringLabel.textColor = [UIColor colorWithRed:191.0/255.0 green:191.0/255.0 blue:191.0/255.0 alpha:1.0];
 		stringLabel.backgroundColor = [UIColor clearColor];
 		stringLabel.adjustsFontSizeToFitWidth = YES;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
-        stringLabel.textAlignment = UITextAlignmentCenter;
-#else
         stringLabel.textAlignment = NSTextAlignmentCenter;
-#endif
 		stringLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-		stringLabel.font = [UIFont boldSystemFontOfSize:13.0];
+		stringLabel.font = [UIFont systemFontOfSize:12];
         stringLabel.numberOfLines = 0;
         stringLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }

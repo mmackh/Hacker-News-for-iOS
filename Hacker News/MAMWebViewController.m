@@ -25,13 +25,10 @@
     UIPopoverController *_popoverController;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (BOOL)prefersStatusBarHidden
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    if ([MAMHNController isPad]) return YES;
+    return NO;
 }
 
 - (void)viewDidLoad

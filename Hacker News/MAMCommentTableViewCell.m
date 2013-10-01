@@ -59,7 +59,13 @@
 + (CGFloat)heightForCellWithText:(NSString *)text constrainedToWidth:(float)width
 {
     CGFloat height = 40;
-    return [text sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineBreakMode:NSLineBreakByTruncatingTail].height + height;
+    static UIFont *font = nil;
+    if (!font)
+    {
+        font = [UIFont systemFontOfSize:16];
+    }
+    CGRect fontRect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:font} context:nil];
+    return height + fontRect.size.height;
 }
 
 @end

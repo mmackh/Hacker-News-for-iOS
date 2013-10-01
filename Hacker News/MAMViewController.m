@@ -47,6 +47,12 @@
     UIPopoverController *_popoverController;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    if ([MAMHNController isPad]) return YES;
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,14 +66,19 @@
     [self.tableView setContentInset:tableViewEdgeInsets];
     [self.tableView setScrollIndicatorInsets:tableViewEdgeInsets];
     
+    UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [tableViewController setTableView:self.tableView];
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setTintColor:[UIColor colorWithWhite:.75f alpha:1.0]];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+    [tableViewController setRefreshControl:refreshControl];
     
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
 }
+
 
 - (void)dealloc
 {
@@ -149,12 +160,16 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static int fontSize = 0;
-    if (fontSize == 0)
+    static UIFont *font = nil;
+    if (!font)
     {
-        fontSize = ([MAMHNController isPad])?20:17;
+        
+        int fontSize = ([MAMHNController isPad])?20:17;
+        font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:fontSize];
     }
-    return 125 + [[_items[indexPath.row] title] sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:fontSize] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width - 20, 90) lineBreakMode:NSLineBreakByTruncatingTail].height;
+    
+    CGRect fontRect = [[_items[indexPath.row] title] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.tableView.bounds) - 20, 90) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:font} context:nil];
+    return 130 + CGRectGetHeight(fontRect) + CGRectGetMinY(fontRect);
 }
 
 - (IBAction)refresh:(id)sender
