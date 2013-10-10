@@ -40,6 +40,10 @@
                                       constant:cellConstraint.constant];
         [self.contentView addConstraint:contentViewConstraint];
     }
+    if ([MAMHNController isPad])
+    {
+        [self.comment setFont:[UIFont systemFontOfSize:18]];
+    }
     [self.comment setDataDetectorTypes:NSTextCheckingTypeLink];
 }
 
@@ -62,7 +66,7 @@
     static UIFont *font = nil;
     if (!font)
     {
-        font = [UIFont systemFontOfSize:16];
+        font = [UIFont systemFontOfSize:([MAMHNController isPad]?18:16)];
     }
     CGRect fontRect = [text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName:font} context:nil];
     return height + fontRect.size.height;

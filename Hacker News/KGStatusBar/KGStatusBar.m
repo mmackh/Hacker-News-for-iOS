@@ -15,6 +15,9 @@
 @end
 
 @implementation KGStatusBar
+{
+    BOOL _statusBarWasInitiallyHidden;
+}
 
 @synthesize topBar, overlayWindow, stringLabel;
 
@@ -60,7 +63,7 @@
     {
         [self.overlayWindow addSubview:self];
     }
-    [self.overlayWindow setHidden:NO];
+    [self.overlayWindow makeKeyAndVisible];
     [self.topBar setHidden:NO];
     self.topBar.backgroundColor = barColor;
     NSString *labelText = status;
@@ -85,6 +88,7 @@
 
 - (void) dismiss
 {
+    
     [UIView animateWithDuration:0.4 animations:^{
         self.stringLabel.alpha = 0.0;
     } completion:^(BOOL finished) {
@@ -99,10 +103,11 @@
 - (UIWindow *)overlayWindow {
     if(!overlayWindow) {
         overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        overlayWindow.rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
         overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         overlayWindow.backgroundColor = [UIColor clearColor];
         overlayWindow.userInteractionEnabled = NO;
-        overlayWindow.windowLevel = UIWindowLevelStatusBar;
+        overlayWindow.windowLevel = UIWindowLevelStatusBar + 1;
         
         // Transform depending on interafce orientation
         CGAffineTransform rotationTransform = CGAffineTransformMakeRotation([self rotation]);
@@ -110,10 +115,7 @@
         self.overlayWindow.bounds = CGRectMake(0.f, 0.f, [self rotatedSize].width, [self rotatedSize].height);
         
         // Register for orientation changes
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleRoration:)
-                                                     name:UIApplicationDidChangeStatusBarOrientationNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRoration:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return overlayWindow;
 }

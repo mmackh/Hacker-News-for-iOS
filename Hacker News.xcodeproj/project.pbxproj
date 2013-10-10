@@ -72,6 +72,7 @@
 		2261F730176CDF1500CB2213 /* MAMReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2261F72F176CDF1500CB2213 /* MAMReaderViewController.m */; };
 		2261F732176CE2E300CB2213 /* view.html in Resources */ = {isa = PBXBuildFile; fileRef = 2261F731176CE2E300CB2213 /* view.html */; };
 		226339AC177B85A700B2270A /* MAMSlideNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226339AB177B85A700B2270A /* MAMSlideNavigationViewController.m */; };
+		2264CBE1180701C000C44F54 /* NSObject+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 2264CBE0180701C000C44F54 /* NSObject+Notifications.m */; };
 		226BA886177221B800FD34B1 /* MAMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 226BA885177221B800FD34B1 /* MAMButton.m */; };
 		2299522C17732C6900033D6F /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299522217732C6900033D6F /* arrow-down.png */; };
 		2299522D17732C6900033D6F /* arrow-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2299522317732C6900033D6F /* arrow-down@2x.png */; };
@@ -228,6 +229,8 @@
 		2261F731176CE2E300CB2213 /* view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = view.html; sourceTree = "<group>"; };
 		226339AA177B85A700B2270A /* MAMSlideNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMSlideNavigationViewController.h; sourceTree = "<group>"; };
 		226339AB177B85A700B2270A /* MAMSlideNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMSlideNavigationViewController.m; sourceTree = "<group>"; };
+		2264CBDF180701C000C44F54 /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
+		2264CBE0180701C000C44F54 /* NSObject+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notifications.m"; sourceTree = "<group>"; };
 		226BA884177221B800FD34B1 /* MAMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMButton.h; sourceTree = "<group>"; };
 		226BA885177221B800FD34B1 /* MAMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMButton.m; sourceTree = "<group>"; };
 		2299522217732C6900033D6F /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
@@ -460,8 +463,6 @@
 			isa = PBXGroup;
 			children = (
 				22E8DD591782E7D800137E75 /* Helpers */,
-				22B2650E176DE7AC001D6656 /* NSString+Additions.h */,
-				22B2650F176DE7AC001D6656 /* NSString+Additions.m */,
 				226BA884177221B800FD34B1 /* MAMButton.h */,
 				226BA885177221B800FD34B1 /* MAMButton.m */,
 				22319193176C3AEA0006084D /* Hacker News-Info.plist */,
@@ -704,6 +705,10 @@
 			children = (
 				22E8DD5A1782E7F800137E75 /* UIView+AnchorPoint.h */,
 				22E8DD5B1782E7F800137E75 /* UIView+AnchorPoint.m */,
+				2264CBDF180701C000C44F54 /* NSObject+Notifications.h */,
+				2264CBE0180701C000C44F54 /* NSObject+Notifications.m */,
+				22B2650E176DE7AC001D6656 /* NSString+Additions.h */,
+				22B2650F176DE7AC001D6656 /* NSString+Additions.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 				223191CE176C5E4F0006084D /* AFHTTPClient.m in Sources */,
 				223191CF176C5E4F0006084D /* AFHTTPRequestOperation.m in Sources */,
 				223191D0176C5E4F0006084D /* AFImageRequestOperation.m in Sources */,
+				2264CBE1180701C000C44F54 /* NSObject+Notifications.m in Sources */,
 				223191D1176C5E4F0006084D /* AFJSONRequestOperation.m in Sources */,
 				223191D2176C5E4F0006084D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				223191D3176C5E4F0006084D /* AFPropertyListRequestOperation.m in Sources */,

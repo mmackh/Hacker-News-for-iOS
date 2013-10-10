@@ -48,22 +48,39 @@
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
     [self.tableView setScrollIndicatorInsets:edgeInsets];
     [self.tableView setContentInset:edgeInsets];
-    [self.titleLabel setText:@"Loading Comments..."];
     
-    __weak MAMCommentsViewController *weakSelf = self;
-    [[MAMHNController sharedController] loadCommentsOnStoryWithID:_story.hnID result:^(NSArray *results)
-    {
-        if (!results.count)
-        {
-            [weakSelf.titleLabel setText:@"No Comments"];
-            return;
-        }
-        _comments = results;
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView flashScrollIndicators];
-        [weakSelf.titleLabel setText:self.story.title];
-    }];
+    UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [tableViewController setTableView:self.tableView];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl setTintColor:[UIColor colorWithWhite:.75f alpha:1.0]];
+    [refreshControl addTarget:self action:@selector(loadComments:) forControlEvents:UIControlEventValueChanged];
+    [tableViewController setRefreshControl:refreshControl];
+    
+    [self.titleLabel setText:@"Loading Comments..."];
+    [self loadComments:nil];
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)loadComments:(id)sender
+{
+    __weak typeof(self) weakSelf = self;
+    [[MAMHNController sharedController] loadCommentsOnStoryWithID:_story.hnID result:^(NSArray *results)
+     {
+         if (!results.count)
+         {
+             [weakSelf.titleLabel setText:@"No Comments"];
+             return;
+         }
+         _comments = results;
+         [weakSelf.tableView reloadData];
+         [weakSelf.tableView flashScrollIndicators];
+         [weakSelf.titleLabel setText:self.story.title];
+         if (sender)
+         {
+             [sender endRefreshing];
+         }
+     }];
 }
 
 - (void)dealloc
@@ -92,6 +109,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"toWeb" sender:[NSURL URLWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/%@",[_comments[indexPath.row]replyID]]]];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:cell.contentView.backgroundColor];
 }
 
 - (IBAction)headerTap:(UITapGestureRecognizer *)sender
