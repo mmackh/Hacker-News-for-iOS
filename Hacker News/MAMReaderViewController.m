@@ -90,7 +90,8 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
     [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
     [self.webView.scrollView setContentInset:edgeInsets];
-    
+    [self.webView.scrollView setDecelerationRate:UIScrollViewDecelerationRateNormal];
+
     UITapGestureRecognizer *imageTapDetector = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [imageTapDetector setNumberOfTapsRequired:1];
     [imageTapDetector setDelegate:self];
