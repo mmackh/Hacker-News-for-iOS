@@ -203,6 +203,9 @@
             return;
         }
         
+        NSString *status = [NSString stringWithFormat:@"Received %d digests", results.count];
+        [KGStatusBar showWithStatus:status duration:2];
+
         _items = results;
         [weakSelf.tableView reloadData];
         if ([sender isKindOfClass:[UIRefreshControl class]])
