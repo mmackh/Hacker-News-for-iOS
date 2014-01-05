@@ -82,6 +82,8 @@
     self.commentsValue = [decoder decodeObjectForKey:@"8"];
     self.hostValue = [decoder decodeObjectForKey:@"9"];
     self.hnID = [decoder decodeObjectForKey:@"10"];
+    self.clearBody = [decoder decodeObjectForKey:@"11"];
+    self.alreadyRead = [[decoder decodeObjectForKey:@"12"] boolValue];
     return self;
 }
 
@@ -97,6 +99,8 @@
     [encoder encodeObject:self.commentsValue forKey:@"8"];
     [encoder encodeObject:self.hostValue forKey:@"9"];
     [encoder encodeObject:self.hnID forKey:@"10"];
+    [encoder encodeObject:self.clearBody forKey:@"11"];
+    [encoder encodeObject:self.alreadyRead ? @"1" : @"0" forKey:@"12"];
 }
 
 @end

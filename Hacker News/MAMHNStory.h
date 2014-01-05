@@ -20,6 +20,8 @@
 @property (nonatomic,copy) NSString *commentsValue;
 @property (nonatomic,copy) NSString *hostValue;
 @property (nonatomic,copy) NSString *hnID;
+@property (nonatomic,copy) NSString *clearBody;
+@property (nonatomic,assign) BOOL alreadyRead;
 
 - (NSString *)subtitle;
 - (NSString *)footer;

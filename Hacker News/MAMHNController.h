@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, HNControllerStoryType)
 + (id)sharedController;
 
 // Methods
+- (void)storeStories;
 - (NSArray *)loadStoriesFromCacheOfType:(HNControllerStoryType)storyType;
 - (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type, BOOL success))completionBlock;
 
