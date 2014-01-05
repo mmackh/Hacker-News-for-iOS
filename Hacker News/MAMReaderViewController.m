@@ -61,7 +61,12 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 - (BOOL)prefersStatusBarHidden
 {
     if ([MAMHNController isPad]) return YES;
-    return NO;
+    return self.topBar.alpha == 0.0;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationFade;
 }
 
 - (void)viewDidLoad
@@ -104,7 +109,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
          {
              BOOL show = (self.topBar.alpha == 0.0);
              [self.topBar setAlpha:(show)?0.9:0.0];
-             
+
              UIEdgeInsets edgeInsets = UIEdgeInsetsMake(([MAMHNController isPad])?44:0, 0, ([MAMHNController isPad])?0:44, 0);
              if (!show)
              {
@@ -112,6 +117,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
              }
              [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
              [self.webView.scrollView setContentInset:edgeInsets];
+             [self setNeedsStatusBarAppearanceUpdate];
          }];
     }
 }
