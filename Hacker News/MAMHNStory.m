@@ -22,7 +22,7 @@
 {
     if (!_subtitle)
     {
-        _subtitle = [NSString stringWithFormat:@"Submitted %@ by %@",self.pubDate,self.user];
+        _subtitle = [NSString stringWithFormat:@"%@ by %@",self.pubDate,self.user];
     }
     return _subtitle;
 }
