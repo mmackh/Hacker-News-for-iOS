@@ -99,14 +99,18 @@
             {
                 if ([oldStory.link isEqualToString:story.link] && oldStory.alreadyRead)
                 {
-                    story.alreadyRead = YES;
+                    [story setAlreadyRead:YES];
+                    [story setClearBody:oldStory.clearBody];
                     break;
                 }
             }
 
-            [story loadClearReadLoadBody: ^(NSString *resultBody, MAMHNStory *story)
+            [story loadClearReadLoadBody: ^(NSString *resultBody, MAMHNStory *story, BOOL success)
             {
-                [story setClearBody:resultBody];
+                if (success)
+                {
+                    [story setClearBody:resultBody];
+                }
             }];
 
             [results addObject:story];

@@ -41,7 +41,7 @@
     return [[NSURL URLWithString:self.link] host];
 }
 
-- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story))completionBlock
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story, BOOL success))completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api.thequeue.org/v1/clear?url=%@",self.link];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:60];
@@ -50,10 +50,17 @@
     {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         RXMLElement *rootXML = [RXMLElement elementFromXMLString:responseString encoding:NSUTF8StringEncoding];
-        [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
+        if ([rootXML isValid]) {
+            [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
+            {
+                completionBlock(e.text, self, YES);
+            }];
+        }
+        else
         {
-            completionBlock(e.text,self);
-        }];
+            NSLog(@"No content received: %@", responseString);
+            completionBlock(nil, self, NO);
+        }
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {

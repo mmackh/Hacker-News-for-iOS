@@ -143,7 +143,7 @@
         [_readerView setDelegate:self];
         [_readerView view];
     }
-    if (![[_items[_selectedRow] title] isEqualToString:_readerView.story.title])
+    if (![[_items[_selectedRow] title] isEqualToString:_readerView.story.title] || !_readerView.story.clearBody)
     {
         [_readerView setStory:_items[_selectedRow]];
     }

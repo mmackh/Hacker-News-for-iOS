@@ -164,14 +164,18 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 
     if (!_story.clearBody)
     {
-        [_story loadClearReadLoadBody:^(NSString *resultBody, MAMHNStory *story)
+        [_story loadClearReadLoadBody: ^(NSString *resultBody, MAMHNStory *story, BOOL success)
         {
-             if (story != _story) return;
-             [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
-             NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
-             [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-             [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
-         }];
+            if (story != _story) return;
+            [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
+            NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:success ? resultBody:@"Problem encountered while downloading data. Try again later." options:0 range:NSMakeRange(0, _string.length)];
+            [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
+
+            if (success)
+            {
+                [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
+            }
+        }];
     }
     else
     {

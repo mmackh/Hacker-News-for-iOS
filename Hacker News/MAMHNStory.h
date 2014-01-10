@@ -27,6 +27,6 @@
 - (NSString *)footer;
 
 - (NSString *)domain;
-- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story))completionBlock;
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story, BOOL success))completionBlock;
 
 @end
