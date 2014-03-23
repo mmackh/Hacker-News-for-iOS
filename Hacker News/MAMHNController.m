@@ -16,6 +16,7 @@
 @implementation MAMHNController
 {
     NSArray *_stories;
+    HNControllerStoryType _type;
 }
 
 + (BOOL)isPad
@@ -48,6 +49,11 @@
     return self;
 }
 
+- (void)storeStories
+{
+	[NSKeyedArchiver archiveRootObject:_stories toFile:[self pathForPersistedStoriesOfType:_type]];
+}
+
 - (void)loadStoriesOfType:(HNControllerStoryType)storyType result:(void(^)(NSArray *results, HNControllerStoryType type, BOOL success))completionBlock
 {
     static const NSString *host = @"http://api.thequeue.org/hn/";
@@ -65,14 +71,13 @@
             targetURLString = [host stringByAppendingString:@"best.xml"];
             break;
     }
-    
-    __weak id weakSelf = self;
-    
+
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:targetURLString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) { return nil; }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        NSArray *oldStories = [_stories copy];
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSMutableArray *results = [[NSMutableArray alloc] init];
         
@@ -89,11 +94,30 @@
             [story setHnID:[e child:@"id"].text];
             [story setDiscussionLink:[e child:@"discussion"].text];
             [story setLink:[e child:@"link"].text];
+
+            for (MAMHNStory *oldStory in oldStories)
+            {
+                if ([oldStory.link isEqualToString:story.link] && oldStory.alreadyRead)
+                {
+                    [story setAlreadyRead:YES];
+                    [story setClearBody:oldStory.clearBody];
+                    break;
+                }
+            }
+
+            [story loadClearReadLoadBody: ^(NSString *resultBody, MAMHNStory *story, BOOL success)
+            {
+                if (success)
+                {
+                    [story setClearBody:resultBody];
+                }
+            }];
+
             [results addObject:story];
         }];
         _stories = results;
-        completionBlock(results,storyType,YES);
-        [NSKeyedArchiver archiveRootObject:results toFile:[weakSelf pathForPersistedStoriesOfType:storyType]];
+        _type = storyType;
+        completionBlock(results, storyType, YES);
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -194,6 +218,7 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) return nil;
     NSArray *results = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForPersistedStoriesOfType:storyType]];
     _stories = results;
+    _type = storyType;
     return results;
 }
 

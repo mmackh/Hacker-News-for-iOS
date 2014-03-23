@@ -22,7 +22,7 @@
 {
     if (!_subtitle)
     {
-        _subtitle = [NSString stringWithFormat:@"Submitted %@ by %@",self.pubDate,self.user];
+        _subtitle = [NSString stringWithFormat:@"%@ by %@",self.pubDate,self.user];
     }
     return _subtitle;
 }
@@ -41,7 +41,7 @@
     return [[NSURL URLWithString:self.link] host];
 }
 
-- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story))completionBlock
+- (void)loadClearReadLoadBody:(void(^)(NSString *resultBody, MAMHNStory *story, BOOL success))completionBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api.thequeue.org/v1/clear?url=%@",self.link];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:60];
@@ -50,10 +50,17 @@
     {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         RXMLElement *rootXML = [RXMLElement elementFromXMLString:responseString encoding:NSUTF8StringEncoding];
-        [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
+        if ([rootXML isValid]) {
+            [rootXML iterate:@"channel.item.description" usingBlock: ^(RXMLElement *e)
+            {
+                completionBlock(e.text, self, YES);
+            }];
+        }
+        else
         {
-            completionBlock(e.text,self);
-        }];
+            NSLog(@"No content received: %@", responseString);
+            completionBlock(nil, self, NO);
+        }
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
@@ -82,6 +89,8 @@
     self.commentsValue = [decoder decodeObjectForKey:@"8"];
     self.hostValue = [decoder decodeObjectForKey:@"9"];
     self.hnID = [decoder decodeObjectForKey:@"10"];
+    self.clearBody = [decoder decodeObjectForKey:@"11"];
+    self.alreadyRead = [[decoder decodeObjectForKey:@"12"] boolValue];
     return self;
 }
 
@@ -97,6 +106,8 @@
     [encoder encodeObject:self.commentsValue forKey:@"8"];
     [encoder encodeObject:self.hostValue forKey:@"9"];
     [encoder encodeObject:self.hnID forKey:@"10"];
+    [encoder encodeObject:self.clearBody forKey:@"11"];
+    [encoder encodeObject:self.alreadyRead ? @"1" : @"0" forKey:@"12"];
 }
 
 @end

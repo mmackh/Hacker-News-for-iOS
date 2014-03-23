@@ -61,7 +61,12 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
 - (BOOL)prefersStatusBarHidden
 {
     if ([MAMHNController isPad]) return YES;
-    return NO;
+    return self.topBar.alpha == 0.0;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationFade;
 }
 
 - (void)viewDidLoad
@@ -85,7 +90,8 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake((isPad)?44:0, 0, (isPad)?0:44, 0);
     [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
     [self.webView.scrollView setContentInset:edgeInsets];
-    
+    [self.webView.scrollView setDecelerationRate:UIScrollViewDecelerationRateNormal];
+
     UITapGestureRecognizer *imageTapDetector = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [imageTapDetector setNumberOfTapsRequired:1];
     [imageTapDetector setDelegate:self];
@@ -104,7 +110,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
          {
              BOOL show = (self.topBar.alpha == 0.0);
              [self.topBar setAlpha:(show)?0.9:0.0];
-             
+
              UIEdgeInsets edgeInsets = UIEdgeInsetsMake(([MAMHNController isPad])?44:0, 0, ([MAMHNController isPad])?0:44, 0);
              if (!show)
              {
@@ -112,6 +118,7 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
              }
              [self.webView.scrollView setScrollIndicatorInsets:edgeInsets];
              [self.webView.scrollView setContentInset:edgeInsets];
+             [self setNeedsStatusBarAppearanceUpdate];
          }];
     }
 }
@@ -154,14 +161,29 @@ typedef NS_ENUM(NSInteger, FontSizeChangeType)
     _string = string;
     [self.webView loadHTMLString:string baseURL:nil];
     __weak MAMReaderViewController *weakSelf = self;
-    [_story loadClearReadLoadBody:^(NSString *resultBody, MAMHNStory *story)
-     {
-         if (story != _story) return;
-         [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
-         NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:resultBody options:0 range:NSMakeRange(0, _string.length)];
-         [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
-         [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
-     }]; 
+
+    if (!_story.clearBody)
+    {
+        [_story loadClearReadLoadBody: ^(NSString *resultBody, MAMHNStory *story, BOOL success)
+        {
+            if (story != _story) return;
+            [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
+            NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:success ? resultBody:@"Problem encountered while downloading data. Try again later." options:0 range:NSMakeRange(0, _string.length)];
+            [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
+
+            if (success)
+            {
+                [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
+            }
+        }];
+    }
+    else
+    {
+        [string replaceOccurrencesOfString:targetFontSize withString:@"**[txtadjust]**" options:0 range:NSMakeRange(0, string.length)];
+        NSString *clearReadDocument = [string stringByReplacingOccurrencesOfString:@"Loading...  " withString:_story.clearBody options:0 range:NSMakeRange(0, _string.length)];
+        [clearReadDocument writeToFile:storyLink atomically:NO encoding:NSUTF8StringEncoding error:nil];
+        [weakSelf.webView loadHTMLString:[clearReadDocument stringByReplacingOccurrencesOfString:@"**[txtadjust]**" withString:targetFontSize] baseURL:nil];
+    }
 }
 
 - (MAMHNStory *)story

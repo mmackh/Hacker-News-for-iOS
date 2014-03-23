@@ -75,12 +75,18 @@
     [tableViewController setRefreshControl:refreshControl];
     
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeStories) name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
+- (void)storeStories
+{
+    [_hnController storeStories];
 }
 
 - (void)dealloc
 {
     [self.view removeObserver:self forKeyPath:@"frame"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -117,6 +123,14 @@
     [cell.subtitle setText:story.subtitle];
     [cell.description setText:story.description];
     [cell.footer setText:story.footer];
+    if (story.alreadyRead)
+    {
+        [cell.title setTextColor:[UIColor grayColor]];
+    }
+    else
+    {
+        [cell.title setTextColor:[UIColor blackColor]];
+    }
     return cell;
 }
 
@@ -129,11 +143,11 @@
         [_readerView setDelegate:self];
         [_readerView view];
     }
-    if (![[_items[_selectedRow] title] isEqualToString:_readerView.story.title])
+    if (![[_items[_selectedRow] title] isEqualToString:_readerView.story.title] || !_readerView.story.clearBody)
     {
         [_readerView setStory:_items[_selectedRow]];
     }
-    
+    ((MAMHNStory*)_items[_selectedRow]).alreadyRead = YES;
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self.navigationController pushViewController:_readerView animated:YES];
 }
@@ -189,6 +203,9 @@
             return;
         }
         
+        NSString *status = [NSString stringWithFormat:@"Received %d digests", results.count];
+        [KGStatusBar showWithStatus:status duration:2];
+
         _items = results;
         [weakSelf.tableView reloadData];
         if ([sender isKindOfClass:[UIRefreshControl class]])
@@ -262,23 +279,11 @@
             break;
     }
     [self.titleLabel setText:title];
-    
+    [_hnController storeStories];
+
     _items = [_hnController loadStoriesFromCacheOfType:_currentSection];
     [self.tableView reloadData];
     [self.tableView setContentOffset:CGPointZero animated:NO];
-    
-    __weak MAMViewController *weakSelf = self;
-    [_hnController loadStoriesOfType:_currentSection result:^(NSArray *results, HNControllerStoryType type, BOOL success)
-     {
-         if (!success)
-         {
-             [KGStatusBar showWithStatus:@"Connection to server failed"];
-             return;
-         }
-         if (type != _currentSection) return;
-         _items = results;
-         [weakSelf.tableView reloadData];
-     }];
 }
 
 - (IBAction)swipe:(id)sender
